@@ -1,0 +1,33 @@
+:root { --bg:#0f1115; --panel:#171a21; --edge:#2a2f3a; --ink:#e6e8ec; --dim:#9aa3b2; --left:#7cc6ff; --right:#a8e6a1; --accent:#ffcf6b; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; padding:24px; max-width:1200px; margin:0 auto; }
+h1 { font-size:22px; margin:0 0 4px; }
+h2 { font-size:15px; text-transform:uppercase; letter-spacing:.04em; color:var(--dim); margin:0 0 10px; }
+.sub { color:var(--dim); margin:0 0 16px; max-width:80ch; }
+.hint { color:var(--dim); text-transform:none; letter-spacing:0; font-weight:normal; }
+.controls { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:20px; }
+select, input[type=text], button { font:inherit; color:var(--ink); background:var(--panel); border:1px solid var(--edge); border-radius:8px; padding:8px 12px; }
+input[type=text] { width:100%; }
+button { background:var(--accent); color:#1a1200; border:none; font-weight:600; cursor:pointer; }
+button:hover { filter:brightness(1.08); }
+.status { color:var(--dim); font-size:13px; }
+.panel { background:var(--panel); border:1px solid var(--edge); border-radius:12px; padding:16px 18px; margin-bottom:18px; }
+.hidden { display:none; }
+#transcriptText { white-space:pre-wrap; color:#cdd3dd; }
+.columns { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px; }
+@media (max-width:900px){ .columns { grid-template-columns:1fr; } }
+.col { background:var(--panel); border:1px solid var(--edge); border-radius:12px; overflow:hidden; }
+.col-head { padding:10px 14px; font-size:12px; font-weight:700; letter-spacing:.04em; border-bottom:1px solid var(--edge); }
+.col-head.left { color:var(--left); }
+.col-head.right { color:var(--right); }
+.coaching { padding:16px 14px; font-size:16px; line-height:1.55; min-height:70px; }
+.meta { padding:8px 14px 14px; color:var(--dim); font-size:12.5px; border-top:1px dashed var(--edge); }
+.meta b { color:#c3cad6; font-weight:600; }
+.field { margin-bottom:12px; }
+.field > label { display:block; font-size:13px; color:var(--dim); margin-bottom:5px; }
+.radios { display:inline-flex; gap:16px; margin-bottom:6px; }
+.radios label { color:var(--ink); }
+#logList { display:flex; flex-direction:column; gap:8px; }
+.obs { border:1px solid var(--edge); border-radius:8px; padding:8px 12px; font-size:13.5px; }
+.obs .tag { color:var(--accent); font-weight:600; }
+.flag { color:#ff8f8f; }

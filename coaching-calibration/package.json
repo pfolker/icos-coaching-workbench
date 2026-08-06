@@ -1,0 +1,22 @@
+{
+  "name": "coaching-calibration",
+  "version": "0.1.0",
+  "description": "Founder Calibration Workbench (Phase 3). Renders the DETERMINISTIC coach (five frozen engines) alongside the STRUCTURED coach (LLM narrator behind the provider seam) for the same real case, with a four-field observation logger. NOT a scoring system: no numeric rubric, no aggregation — raw side-by-side comparisons for the founder to calibrate judgment against. Reuses the evidence-shadow-compare two-column debugUI pattern; modifies no other package.",
+  "main": "index.js",
+  "directories": { "test": "test" },
+  "scripts": {
+    "start": "tsx server/server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module"
+}

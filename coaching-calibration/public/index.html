@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Founder Calibration Workbench</title>
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <header>
+    <h1>Founder Calibration Workbench</h1>
+    <p class="sub">Deterministic coach (five frozen engines) vs. Structured coach (LLM narrator). Calibrate understanding — not a score. Look first, name the mechanism, then decide.</p>
+    <div class="controls">
+      <select id="caseSelect"></select>
+      <button id="runBtn">Run both coaches →</button>
+      <span id="status" class="status"></span>
+    </div>
+  </header>
+
+  <section id="transcript" class="panel hidden">
+    <h2>Learner answer</h2>
+    <p id="transcriptText"></p>
+  </section>
+
+  <section class="columns hidden" id="columns">
+    <div class="col">
+      <div class="col-head left">DETERMINISTIC — five frozen engines</div>
+      <div class="coaching" id="detText"></div>
+      <div class="meta" id="detMeta"></div>
+    </div>
+    <div class="col">
+      <div class="col-head right">STRUCTURED — LLM narrator (behind the seam)</div>
+      <div class="coaching" id="strText"></div>
+      <div class="meta" id="strMeta"></div>
+    </div>
+  </section>
+
+  <section id="observe" class="panel hidden">
+    <h2>Your observation <span class="hint">(no scoring — raw calibration)</span></h2>
+    <div class="field">
+      <label>Preferred</label>
+      <div class="radios" id="preferred">
+        <label><input type="radio" name="pref" value="structured" /> Structured</label>
+        <label><input type="radio" name="pref" value="deterministic" /> Deterministic</label>
+      </div>
+    </div>
+    <div class="field"><label>Why <span class="hint">(one sentence — the mechanism, not an impression)</span></label>
+      <input type="text" id="why" placeholder="e.g. it pointed at a specific claim instead of a generic ask" /></div>
+    <div class="field"><label>Constitution</label>
+      <div class="radios" id="constitution">
+        <label><input type="radio" name="con" value="PASS" checked /> PASS</label>
+        <label><input type="radio" name="con" value="FLAG" /> FLAG</label>
+      </div>
+      <input type="text" id="conNote" placeholder="if FLAG, name the violation" />
+    </div>
+    <div class="field"><label>Retry Motivation <span class="hint">(did it make you want to try again?)</span></label>
+      <div class="radios" id="retry">
+        <label><input type="radio" name="ret" value="YES" /> YES</label>
+        <label><input type="radio" name="ret" value="NO" /> NO</label>
+      </div>
+    </div>
+    <div class="field"><label>Surprised? <span class="hint">(did the coach do something your prior model didn't predict?)</span></label>
+      <div class="radios" id="surprised">
+        <label><input type="radio" name="sur" value="YES" /> YES</label>
+        <label><input type="radio" name="sur" value="NO" /> NO</label>
+      </div>
+      <input type="text" id="surNote" placeholder="if YES, what surprised you" />
+    </div>
+    <div class="field"><label>Notes</label>
+      <input type="text" id="notes" placeholder="anything else worth remembering" /></div>
+    <button id="saveBtn">Save observation</button>
+    <span id="saveStatus" class="status"></span>
+  </section>
+
+  <section id="log" class="panel">
+    <h2>Saved observations <span id="logCount" class="hint"></span></h2>
+    <div id="logList"></div>
+  </section>
+
+  <script src="/app.js"></script>
+</body>
+</html>
