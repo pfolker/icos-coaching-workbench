@@ -1,0 +1,24 @@
+{
+  "name": "product-alpha",
+  "version": "0.1.0",
+  "description": "InterviewAce Product Alpha — Stage 1 of 3 (Alpha/Beta/Production). The first learner-facing InterviewAce experience: one complete 10-step coaching loop, built entirely on the founder's real flagship retry pair and Milestone 3's real captured Coach's Notes/Today's Focus output. No live input, no live LLM calls, no Decision Engine/Observation Engine/backend files touched. Standalone, sibling to every other prototype in this project.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "tsx server/server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module"
+}

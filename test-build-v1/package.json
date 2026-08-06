@@ -1,0 +1,24 @@
+{
+  "name": "test-build-v1",
+  "version": "0.1.0",
+  "description": "InterviewAce Test Build v1 — the first genuinely interactive prototype: real typed input through the real Evidence pipeline (Listen LLM -> Validator -> Evidence Graph -> Adapter -> O5 suppression, live -> Decision Engine -> proof.ts/categoryMap.ts rendering), O5 suppression fully live rather than shadow. Standalone, disposable, no signup. Reuses Product Alpha's UI/flow as a base without modifying that package. Imports the Decision Engine, Observation Engine, Evidence Validator, and evidence-shadow-compare's real pipeline unmodified.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "tsx server/server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module"
+}

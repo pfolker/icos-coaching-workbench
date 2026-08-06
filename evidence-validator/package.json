@@ -1,0 +1,23 @@
+{
+  "name": "evidence-validator",
+  "version": "0.1.0",
+  "description": "ICOS Evidence Validator — standalone, deterministic implementation of Evidence Specification v1.0. No integration with any Observation/Opportunity/Decision/Intervention/Conversation/Comparison engine or the Alpha Workbench.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module"
+}

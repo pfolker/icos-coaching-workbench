@@ -1,0 +1,24 @@
+{
+  "name": "coaching-runtime",
+  "version": "0.1.0",
+  "description": "ICOS Coaching Runtime Prototype — proves the gray-band architecture (Teaching Move -> Coaching Act -> Narrator -> Guardrail) in code for the first time. Same discipline as the Evidence Runtime (Phase 3A): prove the architecture, not a production feature. Standalone, sibling to evidence-runtime. No changes to evidence-runtime, evidence-validator, any frozen engine, or the live Alpha Workbench.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "tsx server/server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module"
+}

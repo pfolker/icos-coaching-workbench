@@ -1,0 +1,351 @@
+{
+  "report_a": {
+    "run_id": "fixture_mrs092cn_a9po8v",
+    "timestamp": "2026-07-19T16:23:29.063Z",
+    "pipeline_mode": "fixture",
+    "model": null
+  },
+  "report_b": {
+    "run_id": "live_mrs0al9x_0s0nnn",
+    "timestamp": "2026-07-19T16:24:40.245Z",
+    "pipeline_mode": "live",
+    "model": "claude-sonnet-5"
+  },
+  "case_deltas": [
+    {
+      "case_id": "001",
+      "present_in_a": true,
+      "present_in_b": true,
+      "class_a_recall_rate_a": 1,
+      "class_a_recall_rate_b": 0.9166666666666666,
+      "class_a_recall_rate_delta": -0.08333333333333337,
+      "claim_type_agreement_rate_a": 1,
+      "claim_type_agreement_rate_b": 1,
+      "claim_type_agreement_rate_delta": 0,
+      "class_b_recall_rate_a": 0.75,
+      "class_b_recall_rate_b": 0.25,
+      "class_b_recall_rate_delta": -0.5,
+      "quote_fidelity_a": {
+        "exact": 12,
+        "paraphrased": 0,
+        "total_proposed": 12
+      },
+      "quote_fidelity_b": {
+        "exact": 10,
+        "paraphrased": 0,
+        "total_proposed": 10
+      },
+      "additions_count_a": 0,
+      "additions_count_b": 1,
+      "additions_count_delta": 1,
+      "class_c_hard_fail_a": true,
+      "class_c_hard_fail_b": true,
+      "class_c_hard_fail_changed": false,
+      "rejection_tally_delta": {
+        "MARKER_NOT_FOUND": 2
+      },
+      "claim_type_disagreements_a": [],
+      "claim_type_disagreements_b": []
+    },
+    {
+      "case_id": "002",
+      "present_in_a": true,
+      "present_in_b": true,
+      "class_a_recall_rate_a": 1,
+      "class_a_recall_rate_b": 1,
+      "class_a_recall_rate_delta": 0,
+      "claim_type_agreement_rate_a": 1,
+      "claim_type_agreement_rate_b": 0.9285714285714286,
+      "claim_type_agreement_rate_delta": -0.0714285714285714,
+      "class_b_recall_rate_a": 1,
+      "class_b_recall_rate_b": 0,
+      "class_b_recall_rate_delta": -1,
+      "quote_fidelity_a": {
+        "exact": 15,
+        "paraphrased": 0,
+        "total_proposed": 15
+      },
+      "quote_fidelity_b": {
+        "exact": 15,
+        "paraphrased": 0,
+        "total_proposed": 15
+      },
+      "additions_count_a": 1,
+      "additions_count_b": 1,
+      "additions_count_delta": 0,
+      "class_c_hard_fail_a": true,
+      "class_c_hard_fail_b": true,
+      "class_c_hard_fail_changed": false,
+      "rejection_tally_delta": {
+        "MARKER_NOT_FOUND": 2
+      },
+      "claim_type_disagreements_a": [],
+      "claim_type_disagreements_b": [
+        {
+          "ground_truth_id": "A14",
+          "ground_truth_type": "self_reported_diagnosis",
+          "proposed_type": "outcome",
+          "quote": "I was able to see the part had been moving."
+        }
+      ]
+    },
+    {
+      "case_id": "003",
+      "present_in_a": true,
+      "present_in_b": false,
+      "class_a_recall_rate_a": 1,
+      "class_a_recall_rate_b": null,
+      "class_a_recall_rate_delta": null,
+      "claim_type_agreement_rate_a": 1,
+      "claim_type_agreement_rate_b": null,
+      "claim_type_agreement_rate_delta": null,
+      "class_b_recall_rate_a": 1,
+      "class_b_recall_rate_b": null,
+      "class_b_recall_rate_delta": null,
+      "quote_fidelity_a": {
+        "exact": 6,
+        "paraphrased": 0,
+        "total_proposed": 6
+      },
+      "quote_fidelity_b": null,
+      "additions_count_a": 0,
+      "additions_count_b": null,
+      "additions_count_delta": null,
+      "class_c_hard_fail_a": true,
+      "class_c_hard_fail_b": null,
+      "class_c_hard_fail_changed": false,
+      "rejection_tally_delta": {},
+      "claim_type_disagreements_a": [],
+      "claim_type_disagreements_b": []
+    },
+    {
+      "case_id": "004",
+      "present_in_a": true,
+      "present_in_b": false,
+      "class_a_recall_rate_a": 1,
+      "class_a_recall_rate_b": null,
+      "class_a_recall_rate_delta": null,
+      "claim_type_agreement_rate_a": 1,
+      "claim_type_agreement_rate_b": null,
+      "claim_type_agreement_rate_delta": null,
+      "class_b_recall_rate_a": 1,
+      "class_b_recall_rate_b": null,
+      "class_b_recall_rate_delta": null,
+      "quote_fidelity_a": {
+        "exact": 8,
+        "paraphrased": 0,
+        "total_proposed": 8
+      },
+      "quote_fidelity_b": null,
+      "additions_count_a": 0,
+      "additions_count_b": null,
+      "additions_count_delta": null,
+      "class_c_hard_fail_a": true,
+      "class_c_hard_fail_b": null,
+      "class_c_hard_fail_changed": false,
+      "rejection_tally_delta": {},
+      "claim_type_disagreements_a": [],
+      "claim_type_disagreements_b": []
+    },
+    {
+      "case_id": "005",
+      "present_in_a": true,
+      "present_in_b": false,
+      "class_a_recall_rate_a": 1,
+      "class_a_recall_rate_b": null,
+      "class_a_recall_rate_delta": null,
+      "claim_type_agreement_rate_a": 1,
+      "claim_type_agreement_rate_b": null,
+      "claim_type_agreement_rate_delta": null,
+      "class_b_recall_rate_a": 1,
+      "class_b_recall_rate_b": null,
+      "class_b_recall_rate_delta": null,
+      "quote_fidelity_a": {
+        "exact": 5,
+        "paraphrased": 0,
+        "total_proposed": 5
+      },
+      "quote_fidelity_b": null,
+      "additions_count_a": 0,
+      "additions_count_b": null,
+      "additions_count_delta": null,
+      "class_c_hard_fail_a": true,
+      "class_c_hard_fail_b": null,
+      "class_c_hard_fail_changed": false,
+      "rejection_tally_delta": {},
+      "claim_type_disagreements_a": [],
+      "claim_type_disagreements_b": []
+    },
+    {
+      "case_id": "006",
+      "present_in_a": true,
+      "present_in_b": false,
+      "class_a_recall_rate_a": 1,
+      "class_a_recall_rate_b": null,
+      "class_a_recall_rate_delta": null,
+      "claim_type_agreement_rate_a": 1,
+      "claim_type_agreement_rate_b": null,
+      "claim_type_agreement_rate_delta": null,
+      "class_b_recall_rate_a": 1,
+      "class_b_recall_rate_b": null,
+      "class_b_recall_rate_delta": null,
+      "quote_fidelity_a": {
+        "exact": 4,
+        "paraphrased": 0,
+        "total_proposed": 4
+      },
+      "quote_fidelity_b": null,
+      "additions_count_a": 0,
+      "additions_count_b": null,
+      "additions_count_delta": null,
+      "class_c_hard_fail_a": true,
+      "class_c_hard_fail_b": null,
+      "class_c_hard_fail_changed": false,
+      "rejection_tally_delta": {},
+      "claim_type_disagreements_a": [],
+      "claim_type_disagreements_b": []
+    },
+    {
+      "case_id": "007",
+      "present_in_a": true,
+      "present_in_b": false,
+      "class_a_recall_rate_a": 1,
+      "class_a_recall_rate_b": null,
+      "class_a_recall_rate_delta": null,
+      "claim_type_agreement_rate_a": 1,
+      "claim_type_agreement_rate_b": null,
+      "claim_type_agreement_rate_delta": null,
+      "class_b_recall_rate_a": 1,
+      "class_b_recall_rate_b": null,
+      "class_b_recall_rate_delta": null,
+      "quote_fidelity_a": {
+        "exact": 5,
+        "paraphrased": 0,
+        "total_proposed": 5
+      },
+      "quote_fidelity_b": null,
+      "additions_count_a": 0,
+      "additions_count_b": null,
+      "additions_count_delta": null,
+      "class_c_hard_fail_a": true,
+      "class_c_hard_fail_b": null,
+      "class_c_hard_fail_changed": false,
+      "rejection_tally_delta": {},
+      "claim_type_disagreements_a": [],
+      "claim_type_disagreements_b": []
+    },
+    {
+      "case_id": "008",
+      "present_in_a": true,
+      "present_in_b": false,
+      "class_a_recall_rate_a": 1,
+      "class_a_recall_rate_b": null,
+      "class_a_recall_rate_delta": null,
+      "claim_type_agreement_rate_a": 1,
+      "claim_type_agreement_rate_b": null,
+      "claim_type_agreement_rate_delta": null,
+      "class_b_recall_rate_a": 1,
+      "class_b_recall_rate_b": null,
+      "class_b_recall_rate_delta": null,
+      "quote_fidelity_a": {
+        "exact": 5,
+        "paraphrased": 0,
+        "total_proposed": 5
+      },
+      "quote_fidelity_b": null,
+      "additions_count_a": 0,
+      "additions_count_b": null,
+      "additions_count_delta": null,
+      "class_c_hard_fail_a": true,
+      "class_c_hard_fail_b": null,
+      "class_c_hard_fail_changed": false,
+      "rejection_tally_delta": {},
+      "claim_type_disagreements_a": [],
+      "claim_type_disagreements_b": []
+    },
+    {
+      "case_id": "009",
+      "present_in_a": true,
+      "present_in_b": true,
+      "class_a_recall_rate_a": 1,
+      "class_a_recall_rate_b": 1,
+      "class_a_recall_rate_delta": 0,
+      "claim_type_agreement_rate_a": 1,
+      "claim_type_agreement_rate_b": 0.5,
+      "claim_type_agreement_rate_delta": -0.5,
+      "class_b_recall_rate_a": 1,
+      "class_b_recall_rate_b": 0,
+      "class_b_recall_rate_delta": -1,
+      "quote_fidelity_a": {
+        "exact": 4,
+        "paraphrased": 0,
+        "total_proposed": 4
+      },
+      "quote_fidelity_b": {
+        "exact": 4,
+        "paraphrased": 0,
+        "total_proposed": 4
+      },
+      "additions_count_a": 0,
+      "additions_count_b": 0,
+      "additions_count_delta": 0,
+      "class_c_hard_fail_a": true,
+      "class_c_hard_fail_b": true,
+      "class_c_hard_fail_changed": false,
+      "rejection_tally_delta": {
+        "MARKER_NOT_FOUND": 1
+      },
+      "claim_type_disagreements_a": [],
+      "claim_type_disagreements_b": [
+        {
+          "ground_truth_id": "A1",
+          "ground_truth_type": "context_fact",
+          "proposed_type": "action",
+          "quote": "We changed our return policy to be more lenient at the start of the quarter."
+        },
+        {
+          "ground_truth_id": "A2",
+          "ground_truth_type": "context_fact",
+          "proposed_type": "action",
+          "quote": "we also added two more support reps that same month"
+        }
+      ]
+    },
+    {
+      "case_id": "010",
+      "present_in_a": true,
+      "present_in_b": false,
+      "class_a_recall_rate_a": 1,
+      "class_a_recall_rate_b": null,
+      "class_a_recall_rate_delta": null,
+      "claim_type_agreement_rate_a": 1,
+      "claim_type_agreement_rate_b": null,
+      "claim_type_agreement_rate_delta": null,
+      "class_b_recall_rate_a": 1,
+      "class_b_recall_rate_b": null,
+      "class_b_recall_rate_delta": null,
+      "quote_fidelity_a": {
+        "exact": 3,
+        "paraphrased": 0,
+        "total_proposed": 3
+      },
+      "quote_fidelity_b": null,
+      "additions_count_a": 0,
+      "additions_count_b": null,
+      "additions_count_delta": null,
+      "class_c_hard_fail_a": true,
+      "class_c_hard_fail_b": null,
+      "class_c_hard_fail_changed": false,
+      "rejection_tally_delta": {},
+      "claim_type_disagreements_a": [],
+      "claim_type_disagreements_b": []
+    }
+  ],
+  "aggregate": {
+    "class_a_recall_avg_delta": -0.02777777777777779,
+    "claim_type_agreement_avg_delta": -0.19047619047619035,
+    "class_b_recall_avg_delta": -0.8916666666666666,
+    "total_additions_delta": 1,
+    "hard_fail_status_changed": false
+  }
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Evidence Shadow Compare — Track A</title>
+<link rel="stylesheet" href="/debugUI.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Evidence Shadow Compare — Track A</h1>
+    <p class="subtitle">LEFT: today's real regex Observation -&gt; Opportunity -&gt; Decision Engine, unmodified. RIGHT: the same transcript through evidence-runtime's Listen LLM -&gt; Validator -&gt; adapter -&gt; the SAME Decision Engine, fed an ADDITIONAL candidate pool. Both rendered through the identical, real proof.ts/categoryMap.ts. No suppression, no winner picked.</p>
+    <div class="controls">
+      <label>Known case
+        <select id="caseSelect"><option value="">— paste your own below —</option></select>
+      </label>
+      <label>Mode
+        <select id="modeSelect">
+          <option value="fixture">Fixture (hand-authored)</option>
+          <option value="live">Live (real Listen Engine call)</option>
+        </select>
+      </label>
+      <button id="runBtn">Run comparison</button>
+      <span id="liveStatus" class="live-status"></span>
+    </div>
+    <textarea id="transcriptBox" placeholder="Paste or type a transcript here (free text only runs in live mode — fixture mode requires a known case above)"></textarea>
+  </header>
+
+  <main id="stages"></main>
+
+  <script src="/debugUI.js"></script>
+</body>
+</html>

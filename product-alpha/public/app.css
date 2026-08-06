@@ -1,0 +1,317 @@
+:root {
+  --bg: #faf8f4;
+  --card: #ffffff;
+  --ink: #2a2a28;
+  --ink-quiet: #6b6a63;
+  --border: #e7e3d9;
+  --good: #3f7a5c;
+  --good-bg: #eef5f0;
+  --flag: #a6763a;
+  --flag-bg: #fbf3e7;
+  --neutral: #6b6a63;
+  --neutral-bg: #f3f1ec;
+  --accent: #2f5d50;
+  --accent-hover: #24473d;
+  --focus-bg: #ecf3ef;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.wordmark {
+  padding: 28px 0 0 40px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-quiet);
+}
+
+#app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.screen {
+  animation: fadein 0.5s ease;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+}
+
+.card-question .question {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.reassurance {
+  text-align: center;
+  color: var(--ink-quiet);
+  font-size: 14px;
+  margin: 18px 0 28px;
+}
+
+.example-label {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-quiet);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.answer-box {
+  width: 100%;
+  min-height: 220px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 24px;
+}
+
+.answer-box:focus { outline: 2px solid var(--accent); }
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-primary:hover { background: var(--accent-hover); }
+
+.btn-secondary {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-secondary:hover { background: var(--focus-bg); }
+
+/* Stage 2 — waiting */
+.waiting-wrap {
+  text-align: center;
+  padding: 100px 0;
+}
+.ack {
+  font-size: 15px;
+  color: var(--ink-quiet);
+  margin-bottom: 36px;
+  animation: fadein 0.3s ease;
+}
+.breathing-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin: 0 auto 28px;
+  animation: breathe 2.4s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(0.85); opacity: 0.55; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+.waiting-copy {
+  font-size: 16px;
+  color: var(--ink-quiet);
+}
+
+/* Stage 3/4 — coaching results */
+.notes-block { margin-bottom: 28px; }
+.notes-category { margin-bottom: 18px; }
+.notes-category-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-quiet);
+  margin-bottom: 8px;
+}
+.note-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadein 0.4s ease forwards;
+}
+.note-item.good { background: var(--good-bg); color: var(--good); }
+.note-item.flag { background: var(--flag-bg); color: var(--flag); }
+.note-item.neutral { background: var(--neutral-bg); color: var(--neutral); }
+.note-icon { flex-shrink: 0; font-weight: 700; }
+.note-text .note-explanation {
+  display: block;
+  color: var(--ink-quiet);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.focus-card {
+  background: var(--focus-bg);
+  border: 1.5px solid var(--accent);
+  border-radius: 14px;
+  padding: 26px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: focusin 0.6s ease forwards;
+}
+@keyframes focusin {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+.focus-kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.focus-label {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.focus-explanation {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-quiet);
+}
+
+/* Stage 5 — retry */
+.first-answer-reference {
+  background: var(--neutral-bg);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 20px 0;
+}
+.reference-kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-quiet);
+  margin-bottom: 8px;
+}
+.reference-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-quiet);
+  white-space: pre-wrap;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+/* Stage 6 — comparison */
+.compare-prompt {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 560px) {
+  .compare-grid { grid-template-columns: 1fr; }
+}
+.compare-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.compare-kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-quiet);
+  margin-bottom: 10px;
+  text-align: center;
+}
+.compare-text {
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  flex: 1;
+  margin-bottom: 16px;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+/* Stage 7/8 — lock-in / transition */
+.lockin-wrap {
+  text-align: center;
+  padding: 40px 0 20px;
+}
+.lockin-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.lockin-sub {
+  font-size: 15px;
+  color: var(--ink-quiet);
+  margin-bottom: 28px;
+}
+.lockin-ack {
+  background: var(--good-bg);
+  color: var(--good);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: left;
+}
+.progress-marker {
+  text-align: center;
+  color: var(--ink-quiet);
+  font-size: 13px;
+  margin: 28px 0 20px;
+}
+
+.end-wrap {
+  text-align: center;
+  padding: 100px 0;
+  color: var(--ink-quiet);
+}
+.end-sub { font-size: 14px; margin-top: 8px; }

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(npx vitest *)",
+      "Bash(node ./node_modules/tsx/dist/cli.mjs -e ' *)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //F //PID 14744)",
+      "Bash(node ./node_modules/tsx/dist/cli.mjs server/server.ts)",
+      "Bash(disown)"
+    ]
+  }
+}

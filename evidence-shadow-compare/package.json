@@ -1,0 +1,24 @@
+{
+  "name": "evidence-shadow-compare",
+  "version": "0.1.0",
+  "description": "ICOS Track A shadow-mode comparison tool. Runs a transcript through BOTH the real, unmodified regex Observation->Opportunity->Decision pipeline AND evidence-runtime's Listen LLM->Validator->adapter->the SAME Decision Engine (fed an additional candidate pool), rendered side by side through the SAME real, unmodified alpha-workbench proof.ts/categoryMap.ts. No Narrator, no free-generated text. Standalone, sibling to evidence-runtime and coaching-runtime. No changes to any frozen engine, evidence-runtime, evidence-validator, or the live Alpha Workbench.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "tsx server/server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module"
+}

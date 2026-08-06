@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Coaching Runtime Prototype — Debug UI</title>
+<link rel="stylesheet" href="/debugUI.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Coaching Runtime Prototype — Debug UI</h1>
+    <p class="subtitle">Engineering laboratory. Teaching Move -> Coaching Act -> Narrator -> Guardrail -> final text.</p>
+    <div class="controls">
+      <label>Case
+        <select id="caseSelect"></select>
+      </label>
+      <label>Mode
+        <select id="modeSelect">
+          <option value="fixture">Fixture (hand-authored)</option>
+          <option value="live">Live (real Narrator call)</option>
+        </select>
+      </label>
+      <button id="runBtn">Run pipeline</button>
+      <span id="liveStatus" class="live-status"></span>
+    </div>
+  </header>
+
+  <main id="stages"></main>
+
+  <script src="/debugUI.js"></script>
+</body>
+</html>

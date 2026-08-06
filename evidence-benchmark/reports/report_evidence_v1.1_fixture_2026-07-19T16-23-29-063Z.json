@@ -1,0 +1,429 @@
+{
+  "run_id": "fixture_mrs092cn_a9po8v",
+  "timestamp": "2026-07-19T16:23:29.063Z",
+  "tier": "evidence",
+  "spec_version": "1.1",
+  "atlas_version": "0.1",
+  "pipeline_mode": "fixture",
+  "model": null,
+  "cases": [
+    {
+      "case_id": "001",
+      "tier": "evidence",
+      "metrics": {
+        "case_id": "001",
+        "class_a_recall": {
+          "matched": 12,
+          "total_ground_truth": 12,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "quote_fidelity": {
+          "total_proposed": 12,
+          "exact": 12,
+          "paraphrased": 0,
+          "paraphrased_examples": []
+        },
+        "claim_type_agreement": {
+          "matched_total": 12,
+          "agree": 12,
+          "rate": 1,
+          "disagreements": []
+        },
+        "additions": {
+          "count": 0,
+          "items": []
+        },
+        "class_b_recall": {
+          "matched": 3,
+          "total_ground_truth": 4,
+          "rate": 0.75,
+          "unmatched_ground_truth_ids": [
+            "B2"
+          ]
+        },
+        "class_c_hard_fail": {
+          "passed": true,
+          "violations": []
+        },
+        "rejection_tally": {}
+      }
+    },
+    {
+      "case_id": "002",
+      "tier": "evidence",
+      "metrics": {
+        "case_id": "002",
+        "class_a_recall": {
+          "matched": 14,
+          "total_ground_truth": 14,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "quote_fidelity": {
+          "total_proposed": 15,
+          "exact": 15,
+          "paraphrased": 0,
+          "paraphrased_examples": []
+        },
+        "claim_type_agreement": {
+          "matched_total": 14,
+          "agree": 14,
+          "rate": 1,
+          "disagreements": []
+        },
+        "additions": {
+          "count": 1,
+          "items": [
+            {
+              "proposal_id": "a_need",
+              "claim_type": "action",
+              "quote": "I needed to come up with a way of locking it in and prevent it from moving"
+            }
+          ]
+        },
+        "class_b_recall": {
+          "matched": 2,
+          "total_ground_truth": 2,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "class_c_hard_fail": {
+          "passed": true,
+          "violations": []
+        },
+        "rejection_tally": {}
+      }
+    },
+    {
+      "case_id": "003",
+      "tier": "evidence",
+      "metrics": {
+        "case_id": "003",
+        "class_a_recall": {
+          "matched": 6,
+          "total_ground_truth": 6,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "quote_fidelity": {
+          "total_proposed": 6,
+          "exact": 6,
+          "paraphrased": 0,
+          "paraphrased_examples": []
+        },
+        "claim_type_agreement": {
+          "matched_total": 6,
+          "agree": 6,
+          "rate": 1,
+          "disagreements": []
+        },
+        "additions": {
+          "count": 0,
+          "items": []
+        },
+        "class_b_recall": {
+          "matched": 2,
+          "total_ground_truth": 2,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "class_c_hard_fail": {
+          "passed": true,
+          "violations": []
+        },
+        "rejection_tally": {}
+      }
+    },
+    {
+      "case_id": "004",
+      "tier": "evidence",
+      "metrics": {
+        "case_id": "004",
+        "class_a_recall": {
+          "matched": 8,
+          "total_ground_truth": 8,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "quote_fidelity": {
+          "total_proposed": 8,
+          "exact": 8,
+          "paraphrased": 0,
+          "paraphrased_examples": []
+        },
+        "claim_type_agreement": {
+          "matched_total": 8,
+          "agree": 8,
+          "rate": 1,
+          "disagreements": []
+        },
+        "additions": {
+          "count": 0,
+          "items": []
+        },
+        "class_b_recall": {
+          "matched": 1,
+          "total_ground_truth": 1,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "class_c_hard_fail": {
+          "passed": true,
+          "violations": []
+        },
+        "rejection_tally": {}
+      }
+    },
+    {
+      "case_id": "005",
+      "tier": "evidence",
+      "metrics": {
+        "case_id": "005",
+        "class_a_recall": {
+          "matched": 5,
+          "total_ground_truth": 5,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "quote_fidelity": {
+          "total_proposed": 5,
+          "exact": 5,
+          "paraphrased": 0,
+          "paraphrased_examples": []
+        },
+        "claim_type_agreement": {
+          "matched_total": 5,
+          "agree": 5,
+          "rate": 1,
+          "disagreements": []
+        },
+        "additions": {
+          "count": 0,
+          "items": []
+        },
+        "class_b_recall": {
+          "matched": 1,
+          "total_ground_truth": 1,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "class_c_hard_fail": {
+          "passed": true,
+          "violations": []
+        },
+        "rejection_tally": {}
+      }
+    },
+    {
+      "case_id": "006",
+      "tier": "evidence",
+      "metrics": {
+        "case_id": "006",
+        "class_a_recall": {
+          "matched": 4,
+          "total_ground_truth": 4,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "quote_fidelity": {
+          "total_proposed": 4,
+          "exact": 4,
+          "paraphrased": 0,
+          "paraphrased_examples": []
+        },
+        "claim_type_agreement": {
+          "matched_total": 4,
+          "agree": 4,
+          "rate": 1,
+          "disagreements": []
+        },
+        "additions": {
+          "count": 0,
+          "items": []
+        },
+        "class_b_recall": {
+          "matched": 1,
+          "total_ground_truth": 1,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "class_c_hard_fail": {
+          "passed": true,
+          "violations": []
+        },
+        "rejection_tally": {}
+      }
+    },
+    {
+      "case_id": "007",
+      "tier": "evidence",
+      "metrics": {
+        "case_id": "007",
+        "class_a_recall": {
+          "matched": 5,
+          "total_ground_truth": 5,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "quote_fidelity": {
+          "total_proposed": 5,
+          "exact": 5,
+          "paraphrased": 0,
+          "paraphrased_examples": []
+        },
+        "claim_type_agreement": {
+          "matched_total": 5,
+          "agree": 5,
+          "rate": 1,
+          "disagreements": []
+        },
+        "additions": {
+          "count": 0,
+          "items": []
+        },
+        "class_b_recall": {
+          "matched": 0,
+          "total_ground_truth": 0,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "class_c_hard_fail": {
+          "passed": true,
+          "violations": []
+        },
+        "rejection_tally": {}
+      }
+    },
+    {
+      "case_id": "008",
+      "tier": "evidence",
+      "metrics": {
+        "case_id": "008",
+        "class_a_recall": {
+          "matched": 5,
+          "total_ground_truth": 5,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "quote_fidelity": {
+          "total_proposed": 5,
+          "exact": 5,
+          "paraphrased": 0,
+          "paraphrased_examples": []
+        },
+        "claim_type_agreement": {
+          "matched_total": 5,
+          "agree": 5,
+          "rate": 1,
+          "disagreements": []
+        },
+        "additions": {
+          "count": 0,
+          "items": []
+        },
+        "class_b_recall": {
+          "matched": 1,
+          "total_ground_truth": 1,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "class_c_hard_fail": {
+          "passed": true,
+          "violations": []
+        },
+        "rejection_tally": {}
+      }
+    },
+    {
+      "case_id": "009",
+      "tier": "evidence",
+      "metrics": {
+        "case_id": "009",
+        "class_a_recall": {
+          "matched": 4,
+          "total_ground_truth": 4,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "quote_fidelity": {
+          "total_proposed": 4,
+          "exact": 4,
+          "paraphrased": 0,
+          "paraphrased_examples": []
+        },
+        "claim_type_agreement": {
+          "matched_total": 4,
+          "agree": 4,
+          "rate": 1,
+          "disagreements": []
+        },
+        "additions": {
+          "count": 0,
+          "items": []
+        },
+        "class_b_recall": {
+          "matched": 1,
+          "total_ground_truth": 1,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "class_c_hard_fail": {
+          "passed": true,
+          "violations": []
+        },
+        "rejection_tally": {}
+      }
+    },
+    {
+      "case_id": "010",
+      "tier": "evidence",
+      "metrics": {
+        "case_id": "010",
+        "class_a_recall": {
+          "matched": 3,
+          "total_ground_truth": 3,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "quote_fidelity": {
+          "total_proposed": 3,
+          "exact": 3,
+          "paraphrased": 0,
+          "paraphrased_examples": []
+        },
+        "claim_type_agreement": {
+          "matched_total": 3,
+          "agree": 3,
+          "rate": 1,
+          "disagreements": []
+        },
+        "additions": {
+          "count": 0,
+          "items": []
+        },
+        "class_b_recall": {
+          "matched": 1,
+          "total_ground_truth": 1,
+          "rate": 1,
+          "unmatched_ground_truth_ids": []
+        },
+        "class_c_hard_fail": {
+          "passed": true,
+          "violations": []
+        },
+        "rejection_tally": {}
+      }
+    }
+  ],
+  "aggregate": {
+    "case_count": 10,
+    "class_a_recall_avg": 1,
+    "claim_type_agreement_avg": 1,
+    "class_b_recall_avg": 0.975,
+    "total_additions": 1,
+    "class_c_hard_fail_all_passed": true,
+    "class_c_hard_fail_failures": [],
+    "rejection_tally_total": {}
+  }
+}

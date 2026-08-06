@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InterviewAce</title>
+<link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+<div class="wordmark">InterviewAce</div>
+
+<main id="app">
+
+  <!-- Screen A — Stage 1: First Answer -->
+  <section class="screen" id="screen-first-answer" data-screen>
+    <div class="card card-question">
+      <p class="question">Tell me about a time you solved a difficult problem at work.</p>
+    </div>
+
+    <div class="reassurance">This is a first pass, not a final one.</div>
+
+    <label class="example-label" for="first-answer-box">
+      Reference example — a real answer from a past session, shown here as a fixed example. Not your own words.
+    </label>
+    <textarea class="answer-box" id="first-answer-box" readonly></textarea>
+
+    <button class="btn-primary" id="submit-first-answer">Submit this answer</button>
+  </section>
+
+  <!-- Stage 2: Waiting for Coaching -->
+  <section class="screen" id="screen-waiting" data-screen hidden>
+    <div class="waiting-wrap">
+      <div class="ack" id="waiting-ack">Got it, reading now.</div>
+      <div class="breathing-dot" aria-hidden="true"></div>
+      <div class="waiting-copy">Reading what you said.</div>
+    </div>
+  </section>
+
+  <!-- Screen B — Stages 3-4: Coaching Results (first take) -->
+  <section class="screen" id="screen-coaching" data-screen hidden>
+    <div class="notes-block" id="coaches-notes"></div>
+
+    <div class="focus-card" id="todays-focus" hidden>
+      <div class="focus-kicker">Today's Focus</div>
+      <div class="focus-label" id="focus-label"></div>
+      <div class="focus-explanation" id="focus-explanation"></div>
+    </div>
+
+    <button class="btn-primary" id="try-again-btn" hidden>Try it again</button>
+  </section>
+
+  <!-- Screen A — Stage 5: Retry -->
+  <section class="screen" id="screen-retry" data-screen hidden>
+    <div class="card card-question">
+      <p class="question">Tell me about a time you solved a difficult problem at work.</p>
+    </div>
+
+    <div class="first-answer-reference">
+      <div class="reference-kicker">Your first answer, for reference</div>
+      <div class="reference-text" id="first-answer-reference-text"></div>
+    </div>
+
+    <label class="example-label" for="retry-answer-box">
+      Reference retry — the same real session's actual retry, shown here as a fixed example. Not your own words.
+    </label>
+    <textarea class="answer-box" id="retry-answer-box" readonly></textarea>
+
+    <button class="btn-primary" id="submit-retry">Submit retry</button>
+  </section>
+
+  <!-- Screen C — Stage 6: Comparison -->
+  <section class="screen" id="screen-comparison" data-screen hidden>
+    <h1 class="compare-prompt">Which one would you rather give?</h1>
+    <div class="compare-grid">
+      <div class="compare-panel">
+        <div class="compare-kicker">First take</div>
+        <div class="compare-text" id="compare-first-text"></div>
+        <button class="btn-secondary pick-btn" data-choice="first">Pick this</button>
+      </div>
+      <div class="compare-panel">
+        <div class="compare-kicker">Your retry</div>
+        <div class="compare-text" id="compare-retry-text"></div>
+        <button class="btn-secondary pick-btn" data-choice="retry">Pick this</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screen D — Stages 7-8: Lock-in / Transition -->
+  <section class="screen" id="screen-lockin" data-screen hidden>
+    <div class="lockin-wrap">
+      <div class="lockin-title">That's the one.</div>
+      <div class="lockin-sub">This answer is locked in.</div>
+      <div class="lockin-ack" id="lockin-ack"></div>
+    </div>
+    <div class="progress-marker" id="progress-marker"></div>
+    <button class="btn-primary" id="next-question-btn">Next question</button>
+  </section>
+
+  <!-- Stage 8 end-of-demo note -->
+  <section class="screen" id="screen-end" data-screen hidden>
+    <div class="end-wrap">
+      <p>This prototype demonstrates one complete coaching loop, start to finish.</p>
+      <p class="end-sub">A second question isn't built here — that's Beta's job.</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>

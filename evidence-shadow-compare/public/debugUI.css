@@ -1,0 +1,93 @@
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+  margin: 0; background: #0e1116; color: #d6dbe3;
+  line-height: 1.45;
+}
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: #151a22; border-bottom: 1px solid #2a3140;
+  padding: 14px 20px;
+}
+.topbar h1 { margin: 0; font-size: 18px; }
+.subtitle { margin: 4px 0 10px; color: #8b93a3; font-size: 13px; max-width: 900px; }
+.controls { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.controls label { font-size: 13px; color: #b0b7c3; display: flex; gap: 6px; align-items: center; }
+select, button, textarea {
+  background: #1d2430; color: #e5e9f0; border: 1px solid #333d4f;
+  border-radius: 6px; padding: 6px 10px; font-size: 13px; font-family: inherit;
+}
+button { cursor: pointer; background: #2c4b7a; border-color: #3a5f99; }
+button:hover { background: #345a8f; }
+.live-status { font-size: 12px; padding: 3px 8px; border-radius: 10px; }
+.live-status.available { background: #16382a; color: #6fdc9a; }
+.live-status.unavailable { background: #3a2020; color: #ef8f8f; }
+#transcriptBox { width: 100%; margin-top: 10px; min-height: 70px; resize: vertical; }
+
+main { padding: 18px 20px 60px; max-width: 1500px; margin: 0 auto; }
+
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+@media (max-width: 1100px) { .columns { grid-template-columns: 1fr; } }
+
+.col-head {
+  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 8px 12px; border-radius: 6px 6px 0 0; margin-bottom: 0;
+}
+.col-head.left { background: #23324a; color: #9fc4ff; }
+.col-head.right { background: #2a3a2a; color: #a6e0a6; }
+.col-body { border: 1px solid #262e3d; border-top: none; border-radius: 0 0 8px 8px; padding: 14px; background: #12161e; }
+
+.stage {
+  background: #151a22; border: 1px solid #262e3d; border-radius: 8px;
+  margin-bottom: 14px; overflow: hidden;
+}
+.stage > summary {
+  cursor: pointer; padding: 10px 14px; font-weight: 600; font-size: 13px;
+  list-style: none; display: flex; align-items: center; gap: 10px;
+}
+.stage > summary::-webkit-details-marker { display: none; }
+.stage-body { padding: 4px 14px 14px; }
+
+.transcript-box {
+  white-space: pre-wrap; background: #0b0e13; border: 1px solid #262e3d;
+  border-radius: 6px; padding: 12px; font-size: 13px; margin-bottom: 14px;
+}
+
+.note-cat { margin-bottom: 10px; }
+.note-cat h4 { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; color: #8b93a3; letter-spacing: 0.04em; }
+.note {
+  border-radius: 6px; padding: 8px 10px; font-size: 13px; margin-bottom: 6px;
+  border-left: 4px solid #444; background: #10151d;
+}
+.note.good { border-left-color: #4caf50; }
+.note.flag { border-left-color: #e0a339; }
+.note.neutral { border-left-color: #5a6270; }
+.note .explanation { color: #9099a8; font-size: 12px; margin-top: 3px; }
+
+.claim-list { display: flex; flex-direction: column; gap: 8px; }
+.claim {
+  border-radius: 6px; padding: 8px 10px; font-size: 13px;
+  border-left: 4px solid #444; background: #10151d;
+}
+.claim.pass { border-left-color: #4caf50; }
+.claim.absent { border-left-color: #5a6270; color: #9099a8; font-style: italic; }
+.badge { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 8px; margin-right: 6px; text-transform: uppercase; }
+.badge.selected { background: #16382a; color: #6fdc9a; }
+.badge.rejected { background: #3a2020; color: #ef8f8f; }
+.badge.reinforce { background: #3a3320; color: #e0c96f; }
+
+pre.json {
+  background: #0b0e13; border: 1px solid #262e3d; border-radius: 6px;
+  padding: 10px; font-size: 12px; overflow-x: auto; max-height: 360px;
+}
+.plain { color: #8b93a3; font-size: 12px; margin: 6px 0 10px; }
+.error-box { background: #3a2020; color: #ef8f8f; border-radius: 6px; padding: 10px; font-size: 13px; }
+
+.unmapped-note {
+  border: 1px solid #3a3320; background: #1a1810; border-radius: 8px;
+  padding: 12px 16px; margin-bottom: 18px; font-size: 13px;
+}
+.unmapped-note h3 { margin: 0 0 8px; font-size: 13px; color: #e0c96f; }
+.unmapped-note ul { margin: 0; padding-left: 18px; }
+.unmapped-note li { margin-bottom: 6px; color: #b0b7c3; }
+.unmapped-note code { color: #e0c96f; }

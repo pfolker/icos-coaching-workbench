@@ -1,0 +1,41 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "alpha-workbench",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["alpha-workbench/node_modules/tsx/dist/cli.mjs", "alpha-workbench/server/server.ts"],
+      "port": 4321
+    },
+    {
+      "name": "evidence-runtime",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["evidence-runtime/node_modules/tsx/dist/cli.mjs", "evidence-runtime/server/server.ts"],
+      "port": 4322
+    },
+    {
+      "name": "coaching-runtime",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["coaching-runtime/node_modules/tsx/dist/cli.mjs", "coaching-runtime/server/server.ts"],
+      "port": 4323
+    },
+    {
+      "name": "evidence-shadow-compare",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["evidence-shadow-compare/node_modules/tsx/dist/cli.mjs", "evidence-shadow-compare/server/server.ts"],
+      "port": 4324
+    },
+    {
+      "name": "product-alpha",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["product-alpha/node_modules/tsx/dist/cli.mjs", "product-alpha/server/server.ts"],
+      "port": 4325
+    },
+    {
+      "name": "test-build-v1",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["test-build-v1/node_modules/tsx/dist/cli.mjs", "test-build-v1/server/server.ts"],
+      "port": 4326
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "evidence-runtime",
+  "version": "0.1.0",
+  "description": "ICOS Evidence Runtime Prototype (Phase 3A) — proves the propose -> validate -> graph pipeline end to end using a real (or fixture) Listen Engine call and the real evidence-validator package. Not a production Listen Engine. Stages 5-8 run the existing, unmodified frozen engines on the same transcript for side-by-side observation only — no adapter feeds the Evidence Graph into them.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "tsx server/server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module"
+}

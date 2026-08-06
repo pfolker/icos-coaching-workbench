@@ -1,0 +1,25 @@
+{
+  "name": "evidence-benchmark",
+  "version": "0.1.0",
+  "description": "ICOS Evidence Benchmark (Tier 1 of the ICOS Evaluation System, Design v0.1). Standalone measurement package: reads evidence-validator and evidence-runtime output, scores it against Evidence Atlas v0.1 ground truth, and persists comparable Run/Report JSON. No changes to Validator/Specification/Runtime behavior.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "run": "tsx bin/run.ts",
+    "diff": "tsx bin/diff.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module"
+}

@@ -1,0 +1,1442 @@
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session b1bcc18f-3b24-4a55-a628-766f591fe1af — first_take
+timestamp: 2026-07-29T02:32:51.411Z
+================================================================================================
+
+transcript:
+  "A customer's shipment arrived with three broken items, and they were furious on the phone. I listened to their frustration first without interrupting, then pulled up the order history and found our warehouse had used the wrong packaging weight class for that product line. I flagged it to the warehouse manager, got a corrected packaging spec approved by the end of the day, and sent the customer a replacement shipment overnight along with a partial refund. The customer's team ended up increasing their order volume with us by 20 percent the following quarter because they said it was the best complaint resolution they had experienced from any vendor."
+
+degraded_reason: fetch failed
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (20 percent)
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session f2a5e5c7-dde5-459c-be78-94cbee89ab35 — first_take
+timestamp: 2026-07-29T02:35:22.352Z
+================================================================================================
+
+transcript:
+  "A customer's shipment arrived with three broken items, and they were furious on the phone. I listened to their frustration first without interrupting, then pulled up the order history and found our warehouse had used the wrong packaging weight class for that product line. I flagged it to the warehouse manager, got a corrected packaging spec approved by the end of the day, and sent the customer a replacement shipment overnight along with a partial refund. The customer's team ended up increasing their order volume with us by 20 percent the following quarter because they said it was the best complaint resolution they had experienced from any vendor."
+
+degraded_reason: fetch failed
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (20 percent)
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session diag — diag
+timestamp: 2026-07-29T02:36:33.526Z
+================================================================================================
+
+transcript:
+  "I fixed a small bug in the login page yesterday by adding a null check."
+
+degraded_reason: fetch failed
+
+rendered Coach's Notes (what the learner actually saw):
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session diag2 — diag2
+timestamp: 2026-07-29T02:37:32.875Z
+================================================================================================
+
+transcript:
+  "I fixed a small bug in the login page yesterday by adding a null check."
+
+raw_regex_fired_candidates: [O3_missing_result]
+evidence_derived_candidates: [O3_missing_result]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=2:
+    - [action] "I fixed a small bug in the login page yesterday by adding a null check"
+    - [action] "adding a null check"
+  gate (b) edges, count=0:
+    (none)
+
+final_candidates (fed to decide()): [O3_missing_result]
+selected_opportunity_id (Today's Focus): O3_missing_result
+
+rendered Coach's Notes (what the learner actually saw):
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session verify-real-001 — first_take
+timestamp: 2026-07-29T02:40:41.492Z
+================================================================================================
+
+transcript:
+  "A customer's shipment arrived with three broken items, and they were furious on the phone. I listened to their frustration first without interrupting, then pulled up the order history and found our warehouse had used the wrong packaging weight class for that product line. I flagged it to the warehouse manager, got a corrected packaging spec approved by the end of the day, and sent the customer a replacement shipment overnight along with a partial refund. The customer's team ended up increasing their order volume with us by 20 percent the following quarter because they said it was the best complaint resolution they had experienced from any vendor."
+
+raw_regex_fired_candidates: [O3_missing_result]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=5:
+    - [action] "I listened to their frustration first without interrupting"
+    - [action] "then pulled up the order history"
+    - [action] "I flagged it to the warehouse manager"
+    - [action] "got a corrected packaging spec approved by the end of the day"
+    - [action] "sent the customer a replacement shipment overnight along with a partial refund"
+  gate (b) edges, count=3:
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "then"
+    - enumeration — marker_text: "I flagged it to the warehouse manager, got a corrected packaging spec approved by the end of the day, and sent the customer a replacement shipment overnight"
+    - explicit_connective — marker_text: "because"
+
+final_candidates (fed to decide()): [O3_missing_result, O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (20 percent)
+      [flag] Outcome could be easier to measure. — You said: 'The customer's team ended up increasing their order volume with us by 20 percent the following…' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session verify-real-001 — retry
+timestamp: 2026-07-29T02:41:53.774Z
+================================================================================================
+
+transcript:
+  "A customer's shipment arrived with three broken items, and they were furious on the phone. I listened to their frustration first without interrupting, then pulled up the order history and found our warehouse had used the wrong packaging weight class for that product line -- the box was rated for 20 pounds less than what the product actually weighed. I flagged it to the warehouse manager, got a corrected packaging spec approved by the end of the day, and sent the customer a replacement shipment overnight along with a partial refund. Within two weeks, our damage-related return rate for that product line dropped from 8 percent to under 1 percent, and the customer's team increased their order volume with us by 20 percent the following quarter, citing it as the best complaint resolution they had experienced from any vendor."
+
+raw_regex_fired_candidates: [none]
+evidence_derived_candidates: [none]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=5:
+    - [action] "I listened to their frustration first without interrupting"
+    - [action] "then pulled up the order history"
+    - [action] "I flagged it to the warehouse manager"
+    - [action] "got a corrected packaging spec approved by the end of the day"
+    - [action] "sent the customer a replacement shipment overnight along with a partial refund"
+  gate (b) edges, count=4:
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "then"
+    - enumeration — marker_text: "and"
+    - quantity_binding — marker_text: "8 percent to under 1 percent"
+    - quantity_binding — marker_text: "20 percent"
+
+final_candidates (fed to decide()): [none]
+selected_opportunity_id (Today's Focus): (reinforce_only — nothing selected)
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (8 percent, 1 percent)
+    STORY:
+      [good] Reaches a result
+      [good] Finishes on the result
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: (none — reinforce_only)
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session forced-fail-test — first_take
+timestamp: 2026-07-29T02:45:55.940Z
+================================================================================================
+
+transcript:
+  "forced failure test transcript"
+
+degraded_reason: forced failure (verification hook)
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+      [flag] Finish with a stronger closing — The last line is the one people remember most, and this one faded rather than landing on the result.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session c1926975-42a0-46e8-96b9-819a48378f2f — first_take
+timestamp: 2026-07-29T02:46:27.176Z
+================================================================================================
+
+transcript:
+  "A customer's shipment arrived with three broken items, and they were furious on the phone. I listened to their frustration first without interrupting, then pulled up the order history and found our warehouse had used the wrong packaging weight class for that product line. I flagged it to the warehouse manager, got a corrected packaging spec approved by the end of the day, and sent the customer a replacement shipment overnight along with a partial refund. The customer's team ended up increasing their order volume with us by 20 percent the following quarter because they said it was the best complaint resolution they had experienced from any vendor."
+
+degraded_reason: fetch failed
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (20 percent)
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session c1926975-42a0-46e8-96b9-819a48378f2f — retry
+timestamp: 2026-07-29T02:47:00.439Z
+================================================================================================
+
+transcript:
+  "A customer's shipment arrived with three broken items, and they were furious on the phone. I listened to their frustration first without interrupting, then pulled up the order history and found our warehouse had used the wrong packaging weight class for that product line -- the box was rated for 20 pounds less than what the product actually weighed. I flagged it to the warehouse manager, got a corrected packaging spec approved by the end of the day, and sent the customer a replacement shipment overnight along with a partial refund. Within two weeks, our damage-related return rate for that product line dropped from 8 percent to under 1 percent, and the customer's team increased their order volume with us by 20 percent the following quarter, citing it as the best complaint resolution they had experienced from any vendor."
+
+degraded_reason: fetch failed
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (8 percent, 1 percent)
+    STORY:
+      [good] Reaches a result
+      [good] Finishes on the result
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: (none — reinforce_only)
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session 6bc76a2a-4aa4-4e25-b68a-371140c40f20 — first_take
+timestamp: 2026-07-29T03:28:50.430Z
+================================================================================================
+
+transcript:
+  "Last week I saw that the part washer had stopped in an alarmed out condition. The alarm was an overflow condition. This happens from time to time when the washer sits for a few days. It's an ongoing maintenance problem they weren't able to fix. So in order to get the washer going again you need to bail out some of the liquid from the tank. As I was doing that, I noticed the color of the liquid looked off. It turns out someone had dumped a bucket of evaporust into the rinse tank, and it diluted all the rust preventative out of the rinse side. When we examined the finished parts, we saw that the normal film on them was not there. We were able to get the washer cleaned out and recharged, Then ran 3 bins of parts back through the washer to get the rust preventative back on the parts."
+
+degraded_reason: fetch failed
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [good] Clearly introduces the situation
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session 35195a4d-a6f0-45c4-a52e-726c25df2ec6 — first_take
+timestamp: 2026-07-29T03:34:01.819Z
+================================================================================================
+
+transcript:
+  "Last week I saw that the part washer had stopped in an alarmed out condition. The alarm was an overflow condition. This happens from time to time when the washer sits for a few days. It's an ongoing maintenance problem they weren't able to fix. So in order to get the washer going again you need to bail out some of the liquid from the tank. As I was doing that, I noticed the color of the liquid looked off. It turns out someone had dumped a bucket of evaporust into the rinse tank, and it diluted all the rust preventative out of the rinse side. When we examined the finished parts, we saw that the normal film on them was not there. We were able to get the washer cleaned out and recharged, Then ran 3 bins of parts back through the washer to get the rust preventative back on the parts."
+
+degraded_reason: fetch failed
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [good] Clearly introduces the situation
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session 35195a4d-a6f0-45c4-a52e-726c25df2ec6 — retry
+timestamp: 2026-07-29T03:37:36.771Z
+================================================================================================
+
+transcript:
+  "Last week I noticed the color was off in our rinse solution for the washer. It turns out someone had dumped a bucket of evaporust into the rinse tank, and it diluted all the rust preventative out of the rinse side. When we examined the finished parts, we saw that the normal film on them was not there. We were able to get the washer cleaned out and recharged, Then ran 3 bins of parts back through the washer to get the rust preventative back on the parts."
+
+degraded_reason: fetch failed
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [good] Clearly introduces the situation
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [flag] Your contribution is hard to separate from the team's. — When every action is framed as "we," it's hard for an interviewer to point to anything specific that was yours.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session diag-reproduce-check — first_take
+timestamp: 2026-07-29T03:44:00.129Z
+================================================================================================
+
+transcript:
+  "Our team shared a single staging database, and two of us kicked off conflicting schema migrations within a few minutes of each other without realizing it. The second migration silently overwrote a column type the first one had just changed, and half our integration tests started failing with cryptic serialization errors. I noticed the failure pattern looked like a type mismatch rather than a logic bug, so I pulled the migration history and found the two overlapping changes. I rolled back both migrations, added a simple lock file convention in our shared Slack channel so people flag before running a migration, and reran the original migration cleanly. The test suite went from 40 failing tests back to zero within the hour, and we never had a repeat collision after that."
+
+degraded_reason: fetch failed
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [good] Clearly marks the action
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session schema-upgrade-demo — first_take
+timestamp: 2026-07-30T00:37:28.663Z
+================================================================================================
+
+transcript:
+  "I updated the deployment script to retry failed health checks up to three times before rolling back automatically."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: regex_fallback
+  fallbackReason: fetch failed
+  errorName: TypeError
+  errorMessage: fetch failed
+  errorCause:
+    name: Error
+    message: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+    code: UNABLE_TO_VERIFY_LEAF_SIGNATURE
+    errno: (none)
+    syscall: (none)
+  elapsedMs: 113
+
+degraded_reason: fetch failed
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [flag] No specifics — A concrete detail, a tool, a constraint, a specific moment, helps a listener picture this as something that happened to you.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session 54c88f83-8ce9-428c-83d0-9970251b3513 — first_take
+timestamp: 2026-07-30T00:48:43.326Z
+================================================================================================
+
+transcript:
+  "Our team's on-call rotation had a gap where two engineers both assumed the other was covering a holiday weekend, and a payment webhook failure went unnoticed for almost six hours. I set up a coverage calendar that cross-checks against our HR holiday calendar automatically and sends a Slack alert if any day has zero owners assigned. Since we put that in place four months ago, we've had zero uncovered gaps and our mean time to acknowledge incidents dropped from around five hours to under twenty minutes."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: regex_fallback
+  fallbackReason: Expected double-quoted property name in JSON at position 3169 (line 75 column 212)
+  errorName: SyntaxError
+  errorMessage: Expected double-quoted property name in JSON at position 3169 (line 75 column 212)
+  errorCause:
+    (none)
+  elapsedMs: 36139
+
+degraded_reason: Expected double-quoted property name in JSON at position 3169 (line 75 column 212)
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [flag] Your contribution is hard to separate from the team's. — When every action is framed as "we," it's hard for an interviewer to point to anything specific that was yours.
+      [flag] No specifics — A concrete detail, a tool, a constraint, a specific moment, helps a listener picture this as something that happened to you.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session step3-batch-1 — first_take
+timestamp: 2026-07-30T01:03:55.008Z
+================================================================================================
+
+transcript:
+  "A vendor delivered a firmware update that silently changed a default timeout value, and our IoT devices started dropping connections in the field. I noticed the pattern only affected devices that had auto-updated in the last week, so I diffed the firmware changelogs and found the timeout change buried in a minor version bump. I pinned our fleet to the previous firmware version and filed a compatibility issue with the vendor, then wrote a canary-device check so any future auto-update gets tested on five units before rolling out fleet-wide. We haven't had a repeat incident in the six months since."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 20316
+
+raw_regex_fired_candidates: [O3_missing_result, O5_vagueness]
+evidence_derived_candidates: [none]
+O5_vagueness_in_merged_pool: true
+
+candidate_suppressions:
+    - O5_vagueness suppressed by "O5 specificity suppression"
+      reasoning: O5_vagueness asserts NO specificity anywhere in the answer. An admissible action/constraint/decision claim, connected to at least one other claim by a validated relationship, is direct, closed-enum evidence that assertion is false — not merely incomplete the way O3_missing_result's absence claim can be contested by presence (this is a REMOVAL, not a competing candidate, because O5's own root_cause priority can outrank any competing candidate regardless of confidence — see this module's own top comment).
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=5:
+    - [action] "I noticed the pattern only affected devices that had auto-updated in the last week"
+    - [action] "I diffed the firmware changelogs and found the timeout change buried in a minor version bump"
+    - [action] "I pinned our fleet to the previous firmware version"
+    - [action] "filed a compatibility issue with the vendor"
+    - [action] "wrote a canary-device check so any future auto-update gets tested on five units before rolling out fleet-wide"
+  gate (b) edges, count=5:
+    - explicit_connective — marker_text: "so"
+    - explicit_connective — marker_text: "so"
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "then"
+    - quantity_binding — marker_text: "six months"
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "since"
+
+final_candidates (fed to decide()): [O3_missing_result]
+selected_opportunity_id (Today's Focus): O3_missing_result
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [good] Clearly marks the action
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session step3-batch-2 — first_take
+timestamp: 2026-07-30T01:04:15.355Z
+================================================================================================
+
+transcript:
+  "I noticed our onboarding email open rate had quietly dropped for a few weeks. I pulled the send logs and found our email provider had started throttling a subset of our sending IP pool without telling us. I split our sending across two providers and set up a simple daily open-rate check that pages me if it drops more than fifteen percent day over day."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 16689
+
+raw_regex_fired_candidates: [O3_missing_result, O5_vagueness]
+evidence_derived_candidates: [O3_missing_result]
+O5_vagueness_in_merged_pool: true
+
+candidate_suppressions:
+    - O5_vagueness suppressed by "O5 specificity suppression"
+      reasoning: O5_vagueness asserts NO specificity anywhere in the answer. An admissible action/constraint/decision claim, connected to at least one other claim by a validated relationship, is direct, closed-enum evidence that assertion is false — not merely incomplete the way O3_missing_result's absence claim can be contested by presence (this is a REMOVAL, not a competing candidate, because O5's own root_cause priority can outrank any competing candidate regardless of confidence — see this module's own top comment).
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=3:
+    - [action] "I pulled the send logs"
+    - [action] "I split our sending across two providers"
+    - [action] "set up a simple daily open-rate check that pages me if it drops more than fifteen percent day over day"
+  gate (b) edges, count=1:
+    - enumeration — marker_text: "and"
+
+final_candidates (fed to decide()): [O3_missing_result]
+selected_opportunity_id (Today's Focus): O3_missing_result
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session step3-batch-3 — first_take
+timestamp: 2026-07-30T01:04:32.057Z
+================================================================================================
+
+transcript:
+  "During a product demo, a client asked a pricing question none of us on the call could answer confidently. I told them I'd follow up within the hour rather than guessing, checked with finance, and sent a written answer with the exact numbers before the end of the day. The client later told our account manager that response was part of why they signed."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 16036
+
+raw_regex_fired_candidates: [O3_missing_result, O5_vagueness]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: true
+
+candidate_suppressions:
+    - O5_vagueness suppressed by "O5 specificity suppression"
+      reasoning: O5_vagueness asserts NO specificity anywhere in the answer. An admissible action/constraint/decision claim, connected to at least one other claim by a validated relationship, is direct, closed-enum evidence that assertion is false — not merely incomplete the way O3_missing_result's absence claim can be contested by presence (this is a REMOVAL, not a competing candidate, because O5's own root_cause priority can outrank any competing candidate regardless of confidence — see this module's own top comment).
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=3:
+    - [decision] "I told them I'd follow up within the hour rather than guessing"
+    - [action] "checked with finance"
+    - [action] "sent a written answer with the exact numbers before the end of the day"
+  gate (b) edges, count=2:
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "and"
+    - contrast_marker — marker_text: "rather than"
+
+final_candidates (fed to decide()): [O3_missing_result, O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'The client later told our account manager that response was part of why they signed' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session step3-batch-4 — first_take
+timestamp: 2026-07-30T01:04:48.106Z
+================================================================================================
+
+transcript:
+  "We had a recurring argument on the team about whose job it was to update the shared onboarding doc, and it kept going stale. I proposed rotating ownership monthly and put a reminder in the team calendar. It's been current for the last quarter."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 12974
+
+raw_regex_fired_candidates: [O3_missing_result]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=2:
+    - [decision] "I proposed rotating ownership monthly"
+    - [action] "put a reminder in the team calendar"
+  gate (b) edges, count=0:
+    (none)
+
+final_candidates (fed to decide()): [O3_missing_result, O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly introduces the situation
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'It's been current for the last quarter.' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session step3-batch-5 — first_take
+timestamp: 2026-07-30T01:05:01.093Z
+================================================================================================
+
+transcript:
+  "A support ticket came in claiming our app was losing user data on logout. I couldn't reproduce it on any device I had, so I asked the customer for their exact OS version and found it was an older Android build with a known local-storage bug. I added a defensive write-confirmation step before logout completes, specifically for that OS range."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 17202
+
+raw_regex_fired_candidates: [O3_missing_result, O5_vagueness]
+evidence_derived_candidates: [O3_missing_result]
+O5_vagueness_in_merged_pool: true
+
+candidate_suppressions:
+    - O5_vagueness suppressed by "O5 specificity suppression"
+      reasoning: O5_vagueness asserts NO specificity anywhere in the answer. An admissible action/constraint/decision claim, connected to at least one other claim by a validated relationship, is direct, closed-enum evidence that assertion is false — not merely incomplete the way O3_missing_result's absence claim can be contested by presence (this is a REMOVAL, not a competing candidate, because O5's own root_cause priority can outrank any competing candidate regardless of confidence — see this module's own top comment).
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=3:
+    - [action] "I couldn't reproduce it on any device I had"
+    - [action] "I asked the customer for their exact OS version"
+    - [action] "I added a defensive write-confirmation step before logout completes, specifically for that OS range."
+  gate (b) edges, count=1:
+    - explicit_connective — marker_text: "so"
+
+final_candidates (fed to decide()): [O3_missing_result]
+selected_opportunity_id (Today's Focus): O3_missing_result
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [good] Clearly marks the action
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session step3-batch-6 — first_take
+timestamp: 2026-07-30T01:05:18.309Z
+================================================================================================
+
+transcript:
+  "Two departments were both building the same internal reporting dashboard without knowing about each other. I found out from a hallway conversation, got both teams on a call, and we merged the two efforts into one shared dashboard instead of maintaining two versions."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 16254
+
+raw_regex_fired_candidates: [O3_missing_result, O5_vagueness]
+evidence_derived_candidates: [O3_missing_result]
+O5_vagueness_in_merged_pool: true
+
+candidate_suppressions:
+    - O5_vagueness suppressed by "O5 specificity suppression"
+      reasoning: O5_vagueness asserts NO specificity anywhere in the answer. An admissible action/constraint/decision claim, connected to at least one other claim by a validated relationship, is direct, closed-enum evidence that assertion is false — not merely incomplete the way O3_missing_result's absence claim can be contested by presence (this is a REMOVAL, not a competing candidate, because O5's own root_cause priority can outrank any competing candidate regardless of confidence — see this module's own top comment).
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=4:
+    - [action] "I found out from a hallway conversation"
+    - [action] "got both teams on a call"
+    - [action] "we merged the two efforts into one shared dashboard"
+    - [decision] "instead of maintaining two versions"
+  gate (b) edges, count=1:
+    - enumeration — marker_text: "and"
+
+final_candidates (fed to decide()): [O3_missing_result]
+selected_opportunity_id (Today's Focus): O3_missing_result
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session 181e159b-bb12-4c7e-af73-fab93a8f197e — first_take
+timestamp: 2026-07-30T01:08:52.713Z
+================================================================================================
+
+transcript:
+  "A junior teammate accidentally force-pushed over a shared feature branch, wiping three days of another engineer's commits. I noticed the missing commits within an hour because our CI history looked wrong, and I was able to recover the lost work from their local reflog before they'd done anything else on that machine. Afterward I set up branch protection rules requiring pull requests on any shared branch, so a direct force-push to those branches is no longer possible for anyone on the team."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 18099
+
+raw_regex_fired_candidates: [O3_missing_result, O5_vagueness]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: true
+
+candidate_suppressions:
+    - O5_vagueness suppressed by "O5 specificity suppression"
+      reasoning: O5_vagueness asserts NO specificity anywhere in the answer. An admissible action/constraint/decision claim, connected to at least one other claim by a validated relationship, is direct, closed-enum evidence that assertion is false — not merely incomplete the way O3_missing_result's absence claim can be contested by presence (this is a REMOVAL, not a competing candidate, because O5's own root_cause priority can outrank any competing candidate regardless of confidence — see this module's own top comment).
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=3:
+    - [action] "I noticed the missing commits within an hour"
+    - [action] "I was able to recover the lost work from their local reflog before they'd done anything else on that machine"
+    - [action] "I set up branch protection rules requiring pull requests on any shared branch"
+  gate (b) edges, count=4:
+    - explicit_connective — marker_text: "because"
+    - explicit_connective — marker_text: "so"
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "Afterward"
+    - quantity_binding — marker_text: "three days"
+
+final_candidates (fed to decide()): [O3_missing_result, O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'a direct force-push to those branches is no longer possible for anyone on the team' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session a2f82b6d-c000-42f1-8b13-4d47d8a9ce34 — first_take
+timestamp: 2026-07-30T02:19:18.350Z
+================================================================================================
+
+transcript:
+  "One time at work we were experiencing a problem holding our .0005" flatness spec's and I had to figure out what was going on. So I created a program to bring in the spindle probe and take measurements after each operation. I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool. What I had discovered was that the drilling operation was pushing the part around before the finishing mill operation. This was creating an uneven stock surface for the finisher, and that was causing uneven tool pressure for the finisher mill. After figuring out that it was an order of operations issue, that was easy enough to fix. I moved the drilling after the finishing mill and improved flatness from .0005" to .0002" consistantly. That issue was solved through data analysis,"
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: regex_fallback
+  fallbackReason: Unterminated string in JSON at position 2767 (line 26 column 24)
+  errorName: SyntaxError
+  errorMessage: Unterminated string in JSON at position 2767 (line 26 column 24)
+  errorCause:
+    (none)
+  elapsedMs: 36205
+
+degraded_reason: Unterminated string in JSON at position 2767 (line 26 column 24)
+
+rendered Coach's Notes (what the learner actually saw):
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly introduces the situation
+      [good] Clearly marks the action
+      [good] Reaches a result
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'I moved the drilling after the finishing mill and improved flatness from .' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session a2f82b6d-c000-42f1-8b13-4d47d8a9ce34 — retry
+timestamp: 2026-07-30T02:25:25.026Z
+================================================================================================
+
+transcript:
+  "One time at work we were experiencing a problem holding our .0005" flatness spec's and I had to figure out what was going on. So I created a program to bring in the spindle probe and take measurements after each operation. I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool. What I had discovered was that the drilling operation was pushing the part around before the finishing mill operation. This was creating an uneven stock surface for the finisher, and that was causing uneven tool pressure for the finisher mill. After figuring out that it was an order of operations issue, that was easy enough to fix. I moved the drilling after the finishing mill and improved flatness from .0005" to .0002" consistantly. The flatness went from 90% results at .0005" to around 80% at .00025". That issue was solved through data analysis,"
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: regex_fallback
+  fallbackReason: Expected ',' or ']' after array element in JSON at position 2593 (line 65 column 6)
+  errorName: SyntaxError
+  errorMessage: Expected ',' or ']' after array element in JSON at position 2593 (line 65 column 6)
+  errorCause:
+    (none)
+  elapsedMs: 38539
+
+degraded_reason: Expected ',' or ']' after array element in JSON at position 2593 (line 65 column 6)
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (90%, 80%)
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly introduces the situation
+      [good] Clearly marks the action
+      [good] Reaches a result
+
+rendered Today's Focus: (none — reinforce_only)
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session repro-bug-1785380685115 — first_take
+timestamp: 2026-07-30T03:04:45.175Z
+================================================================================================
+
+transcript:
+  "Our kayak rental shop's booking calendar let two customers reserve the same kayak for the same afternoon slot, and neither one found out until they showed up at the dock. I built a double-booking check that cross references the reservation list before confirming any new booking request. Since then, the shop KAYAKMARKER has avoided every scheduling conflict of that kind."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 13343
+
+raw_regex_fired_candidates: [O3_missing_result, O5_vagueness]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: true
+
+candidate_suppressions:
+    - O5_vagueness suppressed by "O5 specificity suppression"
+      reasoning: O5_vagueness asserts NO specificity anywhere in the answer. An admissible action/constraint/decision claim, connected to at least one other claim by a validated relationship, is direct, closed-enum evidence that assertion is false — not merely incomplete the way O3_missing_result's absence claim can be contested by presence (this is a REMOVAL, not a competing candidate, because O5's own root_cause priority can outrank any competing candidate regardless of confidence — see this module's own top comment).
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=1:
+    - [action] "I built a double-booking check that cross references the reservation list before confirming any new booking request"
+  gate (b) edges, count=1:
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "Since then"
+
+final_candidates (fed to decide()): [O3_missing_result, O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    CREDIBILITY:
+      [good] Clear personal ownership
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'neither one found out until they showed up at the dock' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session repro-bug-1785380685115 — retry
+timestamp: 2026-07-30T03:04:58.536Z
+================================================================================================
+
+transcript:
+  "Our bakery's flour inventory kept running short without warning because nobody tracked usage per batch. I set up a per batch flour log that flags when stock drops below a threshold before we run out. Since then, the bakery BAKERYMARKER has never run out of flour in the middle of a week again."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 15845
+
+raw_regex_fired_candidates: [O3_missing_result, O5_vagueness]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: true
+
+candidate_suppressions:
+    - O5_vagueness suppressed by "O5 specificity suppression"
+      reasoning: O5_vagueness asserts NO specificity anywhere in the answer. An admissible action/constraint/decision claim, connected to at least one other claim by a validated relationship, is direct, closed-enum evidence that assertion is false — not merely incomplete the way O3_missing_result's absence claim can be contested by presence (this is a REMOVAL, not a competing candidate, because O5's own root_cause priority can outrank any competing candidate regardless of confidence — see this module's own top comment).
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=1:
+    - [action] "I set up a per batch flour log that flags when stock drops below a threshold before we run out."
+  gate (b) edges, count=2:
+    - explicit_connective — marker_text: "because"
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "Since then"
+
+final_candidates (fed to decide()): [O3_missing_result, O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'the bakery BAKERYMARKER has never run out of flour in the middle of a week again.' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session 2619a584-af8b-4c3e-827a-c0775055ed57 — first_take
+timestamp: 2026-08-01T16:25:59.082Z
+================================================================================================
+
+transcript:
+  "One time at work we were experiencing a problem holding our .0005" flatness spec's and I had to figure out what was going on. So I created a program to bring in the spindle probe and take measurements after each operation. I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool. What I had discovered was that the drilling operation was pushing the part around before the finishing mill operation. This was creating an uneven stock surface for the finisher, and that was causing uneven tool pressure for the finisher mill. After figuring out that it was an order of operations issue, that was easy enough to fix. I moved the drilling after the finishing mill and improved flatness from .0005" to .0002" consistantly. That issue was solved through data analysis,"
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 35677
+
+raw_regex_fired_candidates: [O3_unquantified_result]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=4:
+    - [action] "I created a program to bring in the spindle probe and take measurements after each operation"
+    - [action] "I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables"
+    - [action] "run a print file to document the results after every tool that came into the process up until the finishing tool"
+    - [decision] "I moved the drilling after the finishing mill"
+  gate (b) edges, count=2:
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "After figuring out that it was an order of operations issue"
+    - enumeration — marker_text: "and then run"
+
+final_candidates (fed to decide()): [O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly introduces the situation
+      [good] Clearly marks the action
+      [good] Reaches a result
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'I moved the drilling after the finishing mill and improved flatness from .0005" to .0002"…' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session 8a17fac2-c364-4978-acea-85b7cbc793dd — first_take
+timestamp: 2026-08-01T16:56:01.905Z
+================================================================================================
+
+transcript:
+  "One time at work we were experiencing a problem holding our .0005" flatness spec's and I had to figure out what was going on. So I created a program to bring in the spindle probe and take measurements after each operation. I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool. What I had discovered was that the drilling operation was pushing the part around before the finishing mill operation. This was creating an uneven stock surface for the finisher, and that was causing uneven tool pressure for the finisher mill. After figuring out that it was an order of operations issue, that was easy enough to fix. I moved the drilling after the finishing mill and improved flatness from .0005" to .0002" consistantly. That issue was solved through data analysis,"
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 20794
+
+raw_regex_fired_candidates: [O3_unquantified_result]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=4:
+    - [action] "I created a program to bring in the spindle probe and take measurements after each operation"
+    - [action] "I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables"
+    - [action] "run a print file to document the results after every tool that came into the process up until the finishing tool"
+    - [decision] "I moved the drilling after the finishing mill"
+  gate (b) edges, count=1:
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "After"
+
+final_candidates (fed to decide()): [O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly introduces the situation
+      [good] Clearly marks the action
+      [good] Reaches a result
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'I moved the drilling after the finishing mill and improved flatness from .0005" to .0002"…' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session 8a17fac2-c364-4978-acea-85b7cbc793dd — retry
+timestamp: 2026-08-01T17:03:35.641Z
+================================================================================================
+
+transcript:
+  "One time we had a problem holding our .0005" flatness spec and I had to figure out what was going on. So I created a program to bring in the spindle probe and take measurements after each operation. I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool. What I had discovered was that the drilling operation was pushing the part around before the finishing mill operation. This was creating an uneven stock surface for the finisher, and that was causing uneven tool pressure for the finisher mill. After figuring out that it was an order of operations issue, that was easy enough to fix. I moved the drilling after the finishing mill and improved flatness from .0005" to .0002" consistently. We went from 90% of parts being at high limit to 90% of parts being at mean. That issue was solved through data analysis,"
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 34305
+
+raw_regex_fired_candidates: [none]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=3:
+    - [action] "I created a program to bring in the spindle probe and take measurements after each operation"
+    - [action] "I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool"
+    - [decision] "I moved the drilling after the finishing mill"
+  gate (b) edges, count=1:
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "After"
+
+final_candidates (fed to decide()): [O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (90%, 90%)
+      [flag] Outcome could be easier to measure. — You said: 'improved flatness from .0005" to .0002" consistently' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly introduces the situation
+      [good] Clearly marks the action
+      [good] Reaches a result
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session b61d53b4-c65d-4754-b711-9bd9c4458c4f — first_take
+timestamp: 2026-08-01T21:25:53.696Z
+================================================================================================
+
+transcript:
+  "One time at work we were experiencing a problem holding our .0005" flatness spec's and I had to figure out what was going on. So I created a program to bring in the spindle probe and take measurements after each operation. I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool. What I had discovered was that the drilling operation was pushing the part around before the finishing mill operation. This was creating an uneven stock surface for the finisher, and that was causing uneven tool pressure for the finisher mill. After figuring out that it was an order of operations issue, that was easy enough to fix. I moved the drilling after the finishing mill and improved flatness from .0005" to .0002" consistantly. That issue was solved through data analysis,"
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 25982
+
+raw_regex_fired_candidates: [O3_unquantified_result]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=3:
+    - [action] "I created a program to bring in the spindle probe and take measurements after each operation"
+    - [action] "I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool"
+    - [decision] "I moved the drilling after the finishing mill"
+  gate (b) edges, count=2:
+    - explicit_connective — marker_text: "So"
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "After"
+
+final_candidates (fed to decide()): [O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly introduces the situation
+      [good] Clearly marks the action
+      [good] Reaches a result
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'I moved the drilling after the finishing mill and improved flatness from .0005" to .0002"…' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session 419adeda-6d74-4c1b-a6ab-a063a776c12b — first_take
+timestamp: 2026-08-01T21:50:04.163Z
+================================================================================================
+
+transcript:
+  "One time at work we were experiencing a problem holding our .0005" flatness spec's and I had to figure out what was going on. So I created a program to bring in the spindle probe and take measurements after each operation. I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool. What I had discovered was that the drilling operation was pushing the part around before the finishing mill operation. This was creating an uneven stock surface for the finisher, and that was causing uneven tool pressure for the finisher mill. After figuring out that it was an order of operations issue, that was easy enough to fix. I moved the drilling after the finishing mill and improved flatness from .0005" to .0002" consistantly. That issue was solved through data analysis,"
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 32212
+
+raw_regex_fired_candidates: [none]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=4:
+    - [action] "I had to figure out what was going on"
+    - [action] "I created a program to bring in the spindle probe and take measurements after each operation."
+    - [action] "I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool."
+    - [decision] "I moved the drilling after the finishing mill"
+  gate (b) edges, count=2:
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "After"
+    - enumeration — marker_text: "and then"
+
+final_candidates (fed to decide()): [O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (from .0005" to .0002")
+      [flag] Outcome could be easier to measure. — You said: 'improved flatness from .0005" to .0002" consistantly' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly introduces the situation
+      [good] Clearly marks the action
+      [good] Reaches a result
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session fe005af8-a039-4638-9f0e-b2b3fe106603 — first_take
+timestamp: 2026-08-01T23:33:59.352Z
+================================================================================================
+
+transcript:
+  "One time at work we were experiencing a problem holding our .0005" flatness spec's and I had to figure out what was going on. So I created a program to bring in the spindle probe and take measurements after each operation. I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables and then run a print file to document the results after every tool that came into the process up until the finishing tool. What I had discovered was that the drilling operation was pushing the part around before the finishing mill operation. This was creating an uneven stock surface for the finisher, and that was causing uneven tool pressure for the finisher mill. After figuring out that it was an order of operations issue, that was easy enough to fix. I moved the drilling after the finishing mill and improved flatness from .0005" to .0002" consistantly. That issue was solved through data analysis,"
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 25050
+
+raw_regex_fired_candidates: [none]
+evidence_derived_candidates: [none]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=4:
+    - [action] "I created a program to bring in the spindle probe and take measurements after each operation"
+    - [action] "I would probe the 4 corners of the surface and write the readings from Z zero to a series of variables"
+    - [action] "and then run a print file to document the results after every tool that came into the process up until the finishing tool"
+    - [decision] "I moved the drilling after the finishing mill"
+  gate (b) edges, count=2:
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "After"
+    - quantity_binding — marker_text: "from .0005" to .0002""
+
+final_candidates (fed to decide()): [none]
+selected_opportunity_id (Today's Focus): (reinforce_only — nothing selected)
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (from .0005" to .0002")
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly introduces the situation
+      [good] Clearly marks the action
+      [good] Reaches a result
+
+rendered Today's Focus: (none — reinforce_only)
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session 2c4fda01-fb4f-46af-bbe6-136c1d9b01ba — first_take
+timestamp: 2026-08-01T23:35:09.184Z
+================================================================================================
+
+transcript:
+  "We kept scrapping parts because the bore diameter was drifting out of spec over a shift. I set up an in-process gauge check every 20 parts instead of just checking at the end of the run. That let us catch the drift early and adjust the offset before it went out of tolerance. We went from a variance of 2 millimeters down to about half a millimeter across the shift, and scrap basically disappeared."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 29739
+
+raw_regex_fired_candidates: [O4_ownership_hiding]
+evidence_derived_candidates: [none]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=1:
+    - [action] "I set up an in-process gauge check every 20 parts"
+  gate (b) edges, count=6:
+    - explicit_connective — marker_text: "because"
+    - contrast_marker — marker_text: "instead of"
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "before"
+    - quantity_binding — marker_text: "20 parts"
+    - quantity_binding — marker_text: "2 millimeters"
+    - quantity_binding — marker_text: "half a millimeter"
+
+final_candidates (fed to decide()): [O4_ownership_hiding]
+selected_opportunity_id (Today's Focus): O4_ownership_hiding
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (20 parts)
+    STORY:
+      [good] Reaches a result
+      [good] Finishes on the result
+    CREDIBILITY:
+      [flag] Your contribution is hard to separate from the team's. — When every action is framed as "we," it's hard for an interviewer to point to anything specific that was yours.
+
+rendered Today's Focus: Your contribution is hard to separate from the team's. — When every action is framed as "we," it's hard for an interviewer to point to anything specific that was yours.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session f7357aa8-1d20-4a44-911a-1bdf45c9c1aa — first_take
+timestamp: 2026-08-01T23:36:31.095Z
+================================================================================================
+
+transcript:
+  "At my last job, I was troubleshooting a grinding process that kept drifting out of tolerance overnight. I decided to add a thermal soak period before the first cut of each shift instead of starting cold. I tightened the finish grind tolerance from about eight thou down to two thou, and the scrap rate dropped to almost nothing."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 32659
+
+raw_regex_fired_candidates: [O3_unquantified_result]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=2:
+    - [decision] "I decided to add a thermal soak period before the first cut of each shift"
+    - [action] "I tightened the finish grind tolerance from about eight thou down to two thou"
+  gate (b) edges, count=3:
+    - contrast_marker — marker_text: "instead of"
+    - temporal_sequence (ordering_basis: raw_position) — marker_text: "before"
+    - quantity_binding — marker_text: "down to"
+
+final_candidates (fed to decide()): [O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly marks the action
+      [good] Reaches a result
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'I decided to add a thermal soak period before the first cut of each shift instead of starting cold.' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session 3d8867b4-fb35-45a8-ab40-94a61d333c63 — first_take
+timestamp: 2026-08-01T23:39:36.763Z
+================================================================================================
+
+transcript:
+  "I was setting up a new fixture for an angled bracket and the mounting holes kept coming out slightly off. I added a locating pin and re-indexed the fixture against a precision square instead of eyeballing it. I corrected the mounting angle from 2 degrees off to within 0.1 degrees, and the rework rate dropped right away."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: regex_fallback
+  fallbackReason: Expected ',' or ']' after array element in JSON at position 1596 (line 52 column 6)
+  errorName: SyntaxError
+  errorMessage: Expected ',' or ']' after array element in JSON at position 1596 (line 52 column 6)
+  errorCause:
+    (none)
+  elapsedMs: 37970
+
+degraded_reason: Expected ',' or ']' after array element in JSON at position 1596 (line 52 column 6)
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session d4e20808-de4f-409a-873b-d1fc9021b052 — first_take
+timestamp: 2026-08-01T23:40:50.229Z
+================================================================================================
+
+transcript:
+  "I was setting up a new fixture for an angled bracket and the mounting holes kept coming out slightly off. I added a locating pin and re-indexed the fixture against a precision square instead of eyeballing it. I corrected the mounting angle from 2 degrees off to within 0.1 degrees, and the rework rate dropped right away."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 34538
+
+raw_regex_fired_candidates: [O3_missing_result]
+evidence_derived_candidates: [none]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=3:
+    - [action] "I added a locating pin"
+    - [action] "re-indexed the fixture against a precision square"
+    - [action] "eyeballing it"
+  gate (b) edges, count=3:
+    - contrast_marker — marker_text: "instead of"
+    - quantity_binding — marker_text: "to within"
+    - enumeration — marker_text: "and"
+
+final_candidates (fed to decide()): [O3_missing_result]
+selected_opportunity_id (Today's Focus): O3_missing_result
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [flag] No result stated — The work gets described, but the story stops short of saying what happened because of it.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: No result stated — The work gets described, but the story stops short of saying what happened because of it.
+
+================================================================================================
+DEGRADED TURN (regex-only fallback) — session 5237d07b-78c4-4e79-8ed6-aedcd4cd7536 — first_take
+timestamp: 2026-08-02T01:05:53.747Z
+================================================================================================
+
+transcript:
+  "At my last job, I was troubleshooting a grinding process that kept drifting out of tolerance overnight. I decided to add a thermal soak period before the first cut of each shift instead of starting cold. I reduced runout from 8 thou to 2 thou, and the scrap rate dropped to almost nothing."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: regex_fallback
+  fallbackReason: Unexpected end of JSON input
+  errorName: SyntaxError
+  errorMessage: Unexpected end of JSON input
+  errorCause:
+    (none)
+  elapsedMs: 41815
+
+degraded_reason: Unexpected end of JSON input
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (8 thou, 2 thou)
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly marks the action
+      [good] Reaches a result
+      [good] Finishes on the result
+
+rendered Today's Focus: (none — reinforce_only)
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session f19750ef-7820-4938-bf2c-659725630b58 — first_take
+timestamp: 2026-08-02T01:07:24.366Z
+================================================================================================
+
+transcript:
+  "At my last job, I was troubleshooting a grinding process that kept drifting out of tolerance overnight. I decided to add a thermal soak period before the first cut of each shift instead of starting cold. I reduced runout from 8 thou to 2 thou, and the scrap rate dropped to almost nothing."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 26115
+
+raw_regex_fired_candidates: [none]
+evidence_derived_candidates: [O3_unquantified_result]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=1:
+    - [action] "I decided to add a thermal soak period before the first cut of each shift"
+  gate (b) edges, count=1:
+    - enumeration — marker_text: "and"
+
+final_candidates (fed to decide()): [O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    IMPACT:
+      [good] Measurable result (8 thou, 2 thou)
+      [flag] Outcome could be easier to measure. — You said: 'I reduced runout from 8 thou to 2 thou' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+    CREDIBILITY:
+      [good] Clear personal ownership
+    STORY:
+      [good] Clearly marks the action
+      [good] Reaches a result
+      [good] Finishes on the result
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+
+================================================================================================
+REAL TURN (live pipeline, O5 suppression applied live) — session 8ea07c77-fb49-45ea-af62-c6c301faa40d — first_take
+timestamp: 2026-08-02T01:08:43.626Z
+================================================================================================
+
+transcript:
+  "I was setting up a new fixture for an angled bracket and the mounting holes kept coming out slightly off. I added a locating pin and re-indexed the fixture against a precision square instead of eyeballing it. I corrected the mounting angle from 2 degrees off to within 0.1 degrees, and the rework rate dropped right away."
+
+pipeline diagnostics:
+  requestedPipeline: evidence
+  actualPipeline: evidence
+  fallbackReason: (none)
+  errorName: (none)
+  errorMessage: (none)
+  errorCause:
+    (none)
+  elapsedMs: 24661
+
+raw_regex_fired_candidates: [O3_unquantified_result]
+evidence_derived_candidates: [none]
+O5_vagueness_in_merged_pool: false
+
+candidate_suppressions:
+    (none)
+
+gate replay (read-only, for human judgment — not a re-decision):
+  gate (a) specificity claims (action/constraint/decision), count=1:
+    - [action] "I added a locating pin and re-indexed the fixture against a precision square"
+  gate (b) edges, count=1:
+    - quantity_binding — marker_text: "2 degrees off to within 0.1 degrees"
+
+final_candidates (fed to decide()): [O3_unquantified_result]
+selected_opportunity_id (Today's Focus): O3_unquantified_result
+
+rendered Coach's Notes (what the learner actually saw):
+    STORY:
+      [good] Reaches a result
+      [good] Finishes on the result
+    IMPACT:
+      [flag] Outcome could be easier to measure. — You said: 'I corrected the mounting angle from 2 degrees off to within 0.1 degrees, and the rework rate…' — that's a real result, but there's no sense of scale yet. A number, a percentage, or a before-and-after comparison would help the interviewer picture how much actually changed.
+    CREDIBILITY:
+      [neutral] Checked — no credibility concerns detected. — Nothing about your role or the surrounding details raised a concern here.
+
+rendered Today's Focus: Outcome could be easier to measure. — Give the interviewer a clearer sense of how much changed. A number works well, but a before-and-after comparison, timeframe, frequency, or concrete operational result can work too.
+

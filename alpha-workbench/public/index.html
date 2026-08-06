@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ICOS Alpha Workbench</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* engineering tool: readable, unstyled-on-purpose */
+  body { font-family: ui-monospace, Menlo, Consolas, monospace; max-width: 780px;
+         margin: 24px auto; padding: 0 16px; background:#111; color:#ddd; line-height:1.5; }
+  h1 { font-size: 16px; color:#888; font-weight: normal; }
+  section { border:1px solid #333; border-radius:6px; padding:12px 16px; margin:12px 0; }
+  .learner { border-color:#2a5; }
+  .mission { color:#7c6; }
+  .question { font-size:18px; color:#fff; }
+  textarea { width:100%; min-height:110px; background:#000; color:#ddd; border:1px solid #444;
+             border-radius:4px; padding:8px; font-family:inherit; font-size:14px; }
+  button { background:#245; color:#fff; border:1px solid #467; border-radius:4px;
+           padding:8px 14px; cursor:pointer; font-family:inherit; margin-right:8px; }
+  button:disabled { opacity:.4; cursor:default; }
+  .card { background:#0a1a0a; border:1px solid #2a5; border-radius:6px; padding:12px 16px; margin:8px 0; }
+  .card .line { margin:6px 0; }
+  .verdict-achieved { color:#7f7; } .verdict-partial { color:#fd7; } .verdict-not_yet { color:#f97; }
+  details { margin:10px 0; } summary { cursor:pointer; color:#79c; }
+  pre { background:#000; border:1px solid #333; padding:10px; overflow:auto;
+        font-size:12px; max-height:320px; border-radius:4px; }
+  .muted { color:#777; font-size:13px; }
+  .hidden { display:none; }
+  #events div { font-size:12px; color:#9a9; }
+  /* proof experience */
+  .versions { display:flex; gap:12px; }
+  .versions .v { flex:1; background:#000; border:1px solid #444; border-radius:6px; padding:10px;
+                 font-size:13px; white-space:pre-wrap; cursor:pointer; }
+  .versions .v:hover { border-color:#7c6; }
+  .versions .v .vh { color:#777; font-size:11px; margin-bottom:6px; }
+  .beatq { font-size:17px; color:#fff; margin:10px 0; }
+  .add { background:#0f3d1a; color:#aef2b8; border-radius:3px; padding:0 2px; }
+  .notebooks { display:flex; gap:12px; }
+  .note { flex:1; background:#15130b; border:1px solid #665c33; border-radius:4px; padding:12px 14px;
+          font-family: Georgia, 'Times New Roman', serif; font-style: italic; color:#e6dcae; font-size:15px; }
+  .note .nh { font-family: ui-monospace, monospace; font-style:normal; color:#8a8158; font-size:11px; margin-bottom:6px; }
+  .thurs { color:#7c6; }
+  .scan div { margin:3px 0; font-size:14px; }
+  .scan .ok { color:#8d8; } .scan .warn { color:#eb7; } .scan .neutral { color:#889; font-style:italic; }
+  .scan .cat { color:#79c; font-size:11px; text-transform:uppercase; letter-spacing:.04em;
+               margin-top:10px; }
+  .scan .cat:first-child { margin-top:0; }
+  .scan details { margin:2px 0; }
+  .scan details summary { list-style:none; cursor:pointer; }
+  .scan details summary::-webkit-details-marker { display:none; }
+  .scan details summary .mark { display:inline-block; width:.9em; color:#79c;
+    transition:transform .15s ease; }
+  .scan details[open] > summary .mark { transform:rotate(45deg); }
+  .scan .expl { font-size:12px; color:#999; margin:2px 0 4px 18px; }
+  .focus { border-left:3px solid #7c6; padding-left:10px; }
+  table.mx { border-collapse:collapse; margin-top:4px; }
+  table.mx td { padding:3px 12px 3px 0; font-size:14px; }
+  table.mx .to { color:#8d8; }
+  .note ul { margin:4px 0 0 18px; padding:0; } .note li { margin:3px 0; }
+</style>
+</head>
+<body>
+<h1>ICOS Alpha Workbench <span class="muted">— internal engineering tool, not a product</span></h1>
+
+<section class="learner" id="sessionPanel">
+  <div class="mission" id="mission"></div>
+  <div class="muted" id="progress"></div>
+  <div class="question" id="question">Starting session…</div>
+</section>
+
+<section id="answerPanel" class="hidden">
+  <div class="muted">Paste your answer transcript (or use the timer while you speak aloud, then paste):</div>
+  <textarea id="answerText" placeholder="Speak your answer, then paste the transcript here…"></textarea>
+  <div style="margin-top:8px">
+    <button id="recordBtn">⏺ start timer</button>
+    <span class="muted" id="recordState">timer captures duration for pacing metrics; transcription is not wired in the workbench</span>
+  </div>
+  <div style="margin-top:8px">
+    <button id="submitBtn">Submit answer</button>
+    <span class="muted" id="answerStatus"></span>
+  </div>
+</section>
+
+<section id="coachPanel" class="hidden">
+  <div class="muted">Coach&#39;s notes</div>
+  <div class="card scan" id="scanCard"></div>
+  <div class="muted" style="margin-top:10px">Today&#39;s focus</div>
+  <div class="card focus" id="coachCard"></div>
+  <details id="debugSelected"><summary>debug: selected opportunity</summary><pre id="selectedPre"></pre></details>
+  <details id="debugReasoning"><summary>debug: decision reasoning (all candidates, all rejections)</summary><pre id="reasoningPre"></pre></details>
+</section>
+
+<section id="retryPanel" class="hidden">
+  <div class="muted">Retry (the retry is the product):</div>
+  <textarea id="retryText" placeholder="Take another run at the same answer…"></textarea>
+  <div style="margin-top:8px">
+    <button id="compareBtn">Compare retry</button>
+    <button id="skipBtn">Skip retry → next question</button>
+    <span class="muted" id="retryStatus"></span>
+  </div>
+</section>
+
+<section id="comparePanel" class="hidden">
+  <!-- Beat 1: the held verdict -->
+  <div id="beat1">
+    <div class="beatq">Read both answers. Which one would you rather give in your interview?</div>
+    <div class="versions">
+      <div class="v" id="pickV1"><div class="vh">FIRST TAKE</div><span id="v1text"></span></div>
+      <div class="v" id="pickV2"><div class="vh">YOUR RETRY</div><span id="v2text"></span></div>
+    </div>
+    <div class="muted" style="margin-top:6px">click the one you would actually give</div>
+  </div>
+
+  <!-- Beat 2: what genuinely changed -->
+  <div id="beat2" class="hidden">
+    <div class="muted">what changed:</div>
+    <table class="mx" id="metricsTable"></table>
+  </div>
+
+  <!-- Beat 3: the interviewer's notebook -->
+  <div id="beat3" class="hidden">
+    <div class="muted" style="margin-top:10px">what the interviewer would remember:</div>
+    <div class="notebooks">
+      <div class="note"><div class="nh">INTERVIEWER'S NOTES — after your first take</div><ul id="noteA"></ul></div>
+      <div class="note"><div class="nh">INTERVIEWER'S NOTES — after your retry</div><ul id="noteB"></ul></div>
+    </div>
+    <div class="muted" id="coachLine" style="margin-top:8px"></div>
+  </div>
+
+  <!-- Beat 5: the fork -->
+  <div id="beat5" class="hidden" style="margin-top:12px">
+    <button id="lockBtn">Lock it in (say it once more, no coaching)</button>
+    <button id="deeperBtn">Push it further</button>
+    <button id="nextBtn">Next question</button>
+    <div id="lockArea" class="hidden" style="margin-top:8px">
+      <textarea id="lockText" placeholder="Whole answer, start to finish. The one you will actually say."></textarea>
+      <div style="margin-top:6px"><button id="lockSubmit">Locked</button><span class="muted" id="lockStatus"></span></div>
+    </div>
+  </div>
+
+  <details style="margin-top:10px"><summary>debug: comparison internals (verdict, evidence, banked flaws the learner never sees)</summary><pre id="comparePre"></pre></details>
+</section>
+
+<section id="summaryPanel" class="hidden">
+  <div class="muted">Session summary</div>
+  <div class="card" id="summaryCard"></div>
+  <div style="margin-top:8px"><button id="newSessionBtn">New session</button></div>
+</section>
+
+<details id="devConsole">
+  <summary>developer console (event log · learner model · pipeline state)</summary>
+  <div id="events"></div>
+  <pre id="modelPre"></pre>
+</details>
+
+<script type="module">
+import { noteHtml } from "./coachNotes.js";
+let S = null;            // latest {session, debug}
+let recStart = null, duration = undefined;
+
+const $ = (id) => document.getElementById(id);
+const show = (id, on) => $(id).classList.toggle("hidden", !on);
+
+async function api(path, body) {
+  const r = await fetch(path, body ? { method: "POST", headers: {"content-type":"application/json"}, body: JSON.stringify(body) } : { method: path === "/api/session" ? "POST" : "GET" });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error ? j.error.code + ": " + j.error.message : "request failed");
+  return j;
+}
+
+function render() {
+  const s = S.session, d = S.debug;
+  $("mission").textContent = s.mission_line ?? "";
+  $("progress").textContent = "question " + s.question_number + " of " + s.question_total + "  ·  state: " + s.state;
+  $("question").textContent = s.question;
+
+  show("answerPanel", s.state === "AWAITING_ANSWER");
+  show("coachPanel", !!s.move && s.state !== "SESSION_SUMMARY");
+  show("retryPanel", s.state === "COACHED");
+  show("comparePanel", s.state === "COMPARED");
+  show("summaryPanel", s.state === "SESSION_SUMMARY");
+  show("sessionPanel", s.state !== "SESSION_SUMMARY");
+
+  if (s.move) {
+    const m = s.move;
+    const scan = s.quick_scan || { STORY: [], CREDIBILITY: [], IMPACT: [], DELIVERY: [] };
+    const CAT_LABEL = { STORY: "Story", CREDIBILITY: "Credibility", IMPACT: "Impact", DELIVERY: "Delivery" };
+    let scanHtml = "";
+    for (const cat of ["STORY", "CREDIBILITY", "IMPACT", "DELIVERY"]) {
+      const entries = scan[cat] || [];
+      if (!entries.length) continue;
+      scanHtml += '<div class="cat">' + CAT_LABEL[cat] + '</div>' + entries.map(noteHtml).join("");
+    }
+    $("scanCard").innerHTML = scanHtml || '<div class="muted">nothing notable either way</div>';
+    let html = "";
+    if (m.mission_line) html += '<div class="line mission">🎯 ' + esc(m.mission_line) + "</div>";
+    if (m.insight) html += '<div class="line">' + esc(m.insight.copy) + "</div>";
+    if (m.retry_instruction) html += '<div class="line">🔁 ' + esc(m.retry_instruction.copy) + "</div>";
+    if (m.why_it_matters) html += '<div class="line muted" style="font-size:12px">' + esc(m.why_it_matters.copy) + "</div>";
+    if (m.advance_copy) html += '<div class="line">➡️ ' + esc(m.advance_copy) + "</div>";
+    $("coachCard").innerHTML = html;
+    $("selectedPre").textContent = JSON.stringify(d.selected, null, 1);
+    $("reasoningPre").textContent = JSON.stringify({ candidates: d.candidates, reasoning: d.decision_reasoning, verification: d.move_verification }, null, 1);
+    // reinforce_only has no retry: swap retry panel for advance
+    if (s.move.move_type === "reinforce_only" && s.state === "COACHED") {
+      show("retryPanel", true);
+      $("compareBtn").disabled = true;
+      $("retryText").disabled = true;
+      $("skipBtn").textContent = "Next question";
+    } else {
+      $("compareBtn").disabled = false;
+      $("retryText").disabled = false;
+      $("skipBtn").textContent = "Skip retry → next question";
+    }
+  }
+
+  if (s.proof && s.state === "COMPARED") {
+    const p = s.proof;
+    $("v1text").textContent = p.v1_transcript;
+    $("v2text").textContent = p.v2_transcript;
+    const picked = !!p.picked_version;
+    show2("beat1", !picked);
+    show2("beat2", picked && p.metrics_delta.length > 0);
+    show2("beat3", picked);
+    show2("beat5", picked);
+    if (picked) {
+      $("metricsTable").innerHTML = p.metrics_delta.map((mx) =>
+        "<tr><td>" + esc(mx.label) + "</td><td class=" + '"muted"' + ">" + esc(mx.from) +
+        " →</td><td class=" + '"to"' + ">" + esc(mx.to) + "</td></tr>").join("");
+      $("coachLine").textContent = s.comparison.reinforcement.copy;
+      $("noteA").innerHTML = p.notebook_a.map((x) => "<li>" + esc(x) + "</li>").join("");
+      $("noteB").innerHTML = p.notebook_b.map((x) => "<li>" + esc(x) + "</li>").join("");
+    }
+    $("comparePre").textContent = JSON.stringify(d.comparison_internal, null, 1);
+  }
+
+  if (s.summary) {
+    const linesHtml = (s.summary.your_lines || []).length
+      ? '<div class="line thurs" style="margin-top:8px">Your lines — ready for your interview:</div>' +
+        s.summary.your_lines.map((l) =>
+          '<div class="line">🗣️ "' + esc(l.line) + '"' + (l.claim ? '<div class="muted" style="margin-left:24px">what you changed: ' + esc(l.claim) + '</div>' : '') + '</div>').join("")
+      : "";
+    $("summaryCard").innerHTML =
+      s.summary.turns.map((t, i) =>
+        '<div class="line">Q' + (i+1) + ": " + esc(t.coached) + ' → <span class="verdict-' + t.verdict + '">' + esc(String(t.verdict)) + "</span></div>"
+      ).join("") + linesHtml +
+      '<div class="line mission">🎯 ' + esc(s.summary.next_mission) + "</div>";
+  }
+
+  $("events").innerHTML = (d.events || []).map((e) =>
+    "<div>#" + e.seq + " " + e.type + " — " + esc(e.detail) + "</div>").join("");
+  $("modelPre").textContent = "learner_model " + JSON.stringify(d.learner_model, null, 1);
+}
+
+function esc(x){ const t = document.createElement("span"); t.textContent = String(x); return t.innerHTML; }
+
+$("recordBtn").onclick = () => {
+  if (recStart === null) {
+    recStart = Date.now();
+    $("recordBtn").textContent = "⏹ stop timer";
+    $("recordState").textContent = "timing…";
+  } else {
+    duration = Math.max(1, Math.round((Date.now() - recStart) / 1000));
+    recStart = null;
+    $("recordBtn").textContent = "⏺ start timer";
+    $("recordState").textContent = "captured " + duration + "s (will be sent with the transcript)";
+  }
+};
+
+$("submitBtn").onclick = async () => {
+  $("answerStatus").textContent = "running pipeline…";
+  try {
+    S = await api("/api/session/" + S.session.id + "/answer", { transcript: $("answerText").value, duration_seconds: duration });
+    duration = undefined; $("recordState").textContent = "";
+    $("answerStatus").textContent = "";
+    render();
+  } catch (e) { $("answerStatus").textContent = e.message; }
+};
+
+$("compareBtn").onclick = async () => {
+  $("retryStatus").textContent = "comparing…";
+  try {
+    S = await api("/api/session/" + S.session.id + "/retry", { transcript: $("retryText").value, duration_seconds: duration });
+    duration = undefined;
+    $("retryStatus").textContent = "";
+    render();
+  } catch (e) { $("retryStatus").textContent = e.message; }
+};
+
+function show2(id, on){ $(id).classList.toggle("hidden", !on); }
+
+$("pickV1").onclick = async () => { S = await api("/api/session/" + S.session.id + "/pick", { version: "v1" }); render(); };
+$("pickV2").onclick = async () => { S = await api("/api/session/" + S.session.id + "/pick", { version: "v2" }); render(); };
+
+$("deeperBtn").onclick = async () => {
+  S = await api("/api/session/" + S.session.id + "/go-deeper", {});
+  $("retryText").value = ""; render();
+};
+
+$("lockBtn").onclick = () => { show2("lockArea", true); $("lockText").value = ""; };
+$("lockSubmit").onclick = async () => {
+  try {
+    S = await api("/api/session/" + S.session.id + "/lock-in", { transcript: $("lockText").value });
+    show2("lockArea", false);
+    $("lockStatus").textContent = "";
+    $("lockBtn").textContent = "Locked ✓";
+    $("lockBtn").disabled = true;
+    render();
+  } catch (e) { $("lockStatus").textContent = e.message; }
+};
+
+const doAdvance = async () => {
+  S = await api("/api/session/" + S.session.id + "/advance", {});
+  $("answerText").value = ""; $("retryText").value = "";
+  $("lockBtn").textContent = "Lock it in (say it once more, no coaching)";
+  $("lockBtn").disabled = false;
+  render();
+};
+$("skipBtn").onclick = doAdvance;
+$("nextBtn").onclick = doAdvance;
+$("newSessionBtn").onclick = () => start();
+
+async function start() {
+  S = await api("/api/session");
+  $("answerText").value = ""; $("retryText").value = "";
+  render();
+}
+start();
+</script>
+</body>
+</html>
