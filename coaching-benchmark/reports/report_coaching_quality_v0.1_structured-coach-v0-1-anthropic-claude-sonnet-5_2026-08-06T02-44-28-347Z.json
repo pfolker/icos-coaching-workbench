@@ -1,0 +1,250 @@
+{
+  "report": {
+    "run_id": "coaching_msgwx54r_y68f3h",
+    "timestamp": "2026-08-06T02:44:28.347Z",
+    "tier": "coaching_quality",
+    "eval_design_version": "0.1",
+    "corpus_version": "0.1",
+    "subject": "structured-coach v0.1 @ anthropic/claude-sonnet-5",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "cases": [
+      {
+        "case_id": "HF-001",
+        "scores": [
+          {
+            "criterion_id": "answer_comprehension",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "evidence_recognition",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "fact_grounding",
+            "score": 3,
+            "note": "run1[move=highlight_strength, fallback=false, grounding=true]: \"You described going beyond the initial assumption that it was a programming issue, spending time watching the process and talking with operators, which led you to identify the fixture and gripper contact as the actual source of inconsistency.\" — learner-facing message is fully grounded in the cited evidence || run2[move=highlight_strength, fallback=false, grounding=true]: \"You described going beyond the assumption that it was \"a programming issue\" — watching the process and talking with operators to trace the problem to the fixture and casting surface, then addressing it by machining locating divots and redesigning the gripper pads.\" — learner-facing message is fully grounded in the cited evidence || run3[move=highlight_strength, fallback=false, grounding=true]: \"You clearly laid out how you traced the issue past the initial assumption of a programming problem — watching the process, talking with operators, and examining the fixture contact — before pinpointing that the casting surface wasn't locating consistently, and describing the specific fix of adding locating divots and conical gripper pads.\" — learner-facing message is fully grounded in the cited evidence"
+          },
+          {
+            "criterion_id": "attribution_relationship_fidelity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "scope_fidelity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "focus_quality",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "good_enough_judgment",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "actionability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "brevity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "voice_preservation",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "run_to_run_stability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "retry_effect",
+            "score": "pending"
+          }
+        ],
+        "hard_fail": false,
+        "hard_fail_criteria": [],
+        "incomplete": true,
+        "graded_mean": null
+      },
+      {
+        "case_id": "HF-002",
+        "scores": [
+          {
+            "criterion_id": "answer_comprehension",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "evidence_recognition",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "fact_grounding",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "attribution_relationship_fidelity",
+            "score": 3,
+            "note": "run1[move=request_number, fallback=false, grounding=true]: \"What was the actual number or percentage of the drop in customer complaints by the end of the quarter?\" — no causal relationship asserted as fact || run2[move=request_number, fallback=false, grounding=true]: \"What was the actual number or percentage drop in customer complaints by the end of the quarter?\" — no causal relationship asserted as fact || run3[move=request_number, fallback=false, grounding=true]: \"What was the customer complaint number before and after the quarter, or the percentage drop — can you put a figure to that decrease?\" — no causal relationship asserted as fact"
+          },
+          {
+            "criterion_id": "scope_fidelity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "focus_quality",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "good_enough_judgment",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "actionability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "brevity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "voice_preservation",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "run_to_run_stability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "retry_effect",
+            "score": "pending"
+          }
+        ],
+        "hard_fail": false,
+        "hard_fail_criteria": [],
+        "incomplete": true,
+        "graded_mean": null
+      }
+    ],
+    "aggregate": {
+      "case_count": 2,
+      "scored_case_count": 0,
+      "incomplete_case_count": 2,
+      "hard_fail_case_count": 0,
+      "hard_fail_case_ids": [],
+      "per_criterion_mean": {
+        "answer_comprehension": null,
+        "evidence_recognition": null,
+        "fact_grounding": 3,
+        "attribution_relationship_fidelity": 3,
+        "scope_fidelity": null,
+        "focus_quality": null,
+        "good_enough_judgment": null,
+        "actionability": null,
+        "brevity": null,
+        "voice_preservation": null,
+        "run_to_run_stability": null,
+        "retry_effect": null
+      },
+      "overall_graded_mean": null
+    }
+  },
+  "gate_runs": [
+    {
+      "hf_case_id": "HF-001",
+      "fixture_case": "001",
+      "hard_gate_criterion": "fact_grounding",
+      "teaching_move": "highlight_strength",
+      "raw_message": "You described going beyond the initial assumption that it was a programming issue, spending time watching the process and talking with operators, which led you to identify the fixture and gripper contact as the actual source of inconsistency.",
+      "final_text": "You described going beyond the initial assumption that it was a programming issue, spending time watching the process and talking with operators, which led you to identify the fixture and gripper contact as the actual source of inconsistency.",
+      "fallback_used": false,
+      "guardrail_passed": true,
+      "grounding_passed": true,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "learner-facing message is fully grounded in the cited evidence",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "hf_case_id": "HF-002",
+      "fixture_case": "009",
+      "hard_gate_criterion": "attribution_relationship_fidelity",
+      "teaching_move": "request_number",
+      "raw_message": "What was the actual number or percentage of the drop in customer complaints by the end of the quarter?",
+      "final_text": "What was the actual number or percentage of the drop in customer complaints by the end of the quarter?",
+      "fallback_used": false,
+      "guardrail_passed": true,
+      "grounding_passed": true,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "no causal relationship asserted as fact",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "hf_case_id": "HF-001",
+      "fixture_case": "001",
+      "hard_gate_criterion": "fact_grounding",
+      "teaching_move": "highlight_strength",
+      "raw_message": "You described going beyond the assumption that it was \"a programming issue\" — watching the process and talking with operators to trace the problem to the fixture and casting surface, then addressing it by machining locating divots and redesigning the gripper pads.",
+      "final_text": "You described going beyond the assumption that it was \"a programming issue\" — watching the process and talking with operators to trace the problem to the fixture and casting surface, then addressing it by machining locating divots and redesigning the gripper pads.",
+      "fallback_used": false,
+      "guardrail_passed": true,
+      "grounding_passed": true,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "learner-facing message is fully grounded in the cited evidence",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "hf_case_id": "HF-002",
+      "fixture_case": "009",
+      "hard_gate_criterion": "attribution_relationship_fidelity",
+      "teaching_move": "request_number",
+      "raw_message": "What was the actual number or percentage drop in customer complaints by the end of the quarter?",
+      "final_text": "What was the actual number or percentage drop in customer complaints by the end of the quarter?",
+      "fallback_used": false,
+      "guardrail_passed": true,
+      "grounding_passed": true,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "no causal relationship asserted as fact",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "hf_case_id": "HF-001",
+      "fixture_case": "001",
+      "hard_gate_criterion": "fact_grounding",
+      "teaching_move": "highlight_strength",
+      "raw_message": "You clearly laid out how you traced the issue past the initial assumption of a programming problem — watching the process, talking with operators, and examining the fixture contact — before pinpointing that the casting surface wasn't locating consistently, and describing the specific fix of adding locating divots and conical gripper pads.",
+      "final_text": "You clearly laid out how you traced the issue past the initial assumption of a programming problem — watching the process, talking with operators, and examining the fixture contact — before pinpointing that the casting surface wasn't locating consistently, and describing the specific fix of adding locating divots and conical gripper pads.",
+      "fallback_used": false,
+      "guardrail_passed": true,
+      "grounding_passed": true,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "learner-facing message is fully grounded in the cited evidence",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "hf_case_id": "HF-002",
+      "fixture_case": "009",
+      "hard_gate_criterion": "attribution_relationship_fidelity",
+      "teaching_move": "request_number",
+      "raw_message": "What was the customer complaint number before and after the quarter, or the percentage drop — can you put a figure to that decrease?",
+      "final_text": "What was the customer complaint number before and after the quarter, or the percentage drop — can you put a figure to that decrease?",
+      "fallback_used": false,
+      "guardrail_passed": true,
+      "grounding_passed": true,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "no causal relationship asserted as fact",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    }
+  ]
+}

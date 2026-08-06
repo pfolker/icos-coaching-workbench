@@ -1,75 +1,40 @@
 /**
- * Grounding check — the 8th check, distinct from the 7 tone/evaluative
- * guardrail categories. Those check HOW the Narrator talks about evidence;
- * this checks WHETHER what it says is actually traceable to the evidence
- * it was given. Found necessary by a real incident: a fixture message for
- * Case 001 asserted "an indicator check" — content that exists nowhere in
- * Case 001's transcript or Evidence Graph, only in Case 002's. None of the
- * 7 tone categories would ever have caught this, because nothing about
- * that sentence is evaluative, predictive, or judgmental — it is simply
- * false relative to its own cited evidence.
+ * Grounding check — RESCOPED from a lexical-difference heuristic to
+ * CONCRETE-ENTITY detection (grounding-rescope work order).
  *
- * Deliberately coarse, same discipline as the other lexical checks in this
- * project: tokenize the message, drop common framing/function words, and
- * confirm each remaining distinctive word has SOME plausible match (by
- * shared 5-character stem, to tolerate "machining"/"machined"-style
- * inflection) somewhere in the referenced evidence quotes. This is not
- * semantic entailment checking — it cannot catch a fabricated claim built
- * entirely from words that also happen to appear in the evidence, only
- * claims that introduce genuinely new distinctive vocabulary. That is a
- * real, named limitation (see README.md), not a claim of completeness.
+ * The 8th check, distinct from the 7 tone/evaluative guardrail categories:
+ * those check HOW the Narrator talks; this checks WHETHER what it says is
+ * traceable to the evidence it was given. Found necessary by a real incident:
+ * a Case 001 message asserted "an indicator check" — a tool that exists
+ * nowhere in Case 001's evidence, only in Case 002's.
+ *
+ * WHY THE RESCOPE. The previous version flagged ANY distinctive word absent
+ * from the evidence. That false-fired on ordinary synthesis/framing prose a
+ * coach legitimately uses to describe real evidence ("investigative", "going",
+ * "beyond", "leading", "broader", "fixing", "tracked", ...). Each fresh live
+ * generation reached for NEW framing words, so the stopword list chased an
+ * unbounded set. And rarity cannot separate the two classes: the real
+ * fabrication "indicator" is MORE common than the false positive
+ * "investigative", so no frequency cutoff works.
+ *
+ * THE ACTUAL FAILURE CLASS is narrower and stable: a fabricated CONCRETE
+ * ENTITY — a physical tool / instrument / device the coach names as something
+ * the learner used, that appears nowhere in the evidence. So this check flags
+ * only concrete-entity nouns absent from the evidence, and lets all
+ * prose/abstract vocabulary pass. It generalizes from the failure class
+ * rather than banning words one at a time.
+ *
+ * HONEST LIMITATION (reported, not hidden): the concrete-entity vocabulary is
+ * curated and therefore incomplete — a fabricated tool NOT in it is missed (a
+ * false negative). This trades the old UNBOUNDED false-positive problem for a
+ * BOUNDED false-negative one, on the safer side of a coaching product (a
+ * missed catch degrades silently to the same safe fallback; an over-flag
+ * degrades good coaching every turn). The maintenance model is also healthier:
+ * the vocabulary grows only when a REAL fabrication is missed — a rare,
+ * reviewable safety event — never on benign prose noise. This is not a claim
+ * of completeness; a fully general solution needs semantic/NER capability,
+ * out of scope here.
  */
-
-/**
- * Tuned empirically against tonight's own real Narrator outputs (fixture
- * and live) for all four required test cases, the same way
- * evidence-validator's lexicons were tuned against real Atlas cases, not
- * guessed once and left alone. This list covers two different reasons a
- * word gets excluded, and both matter for different reasons:
- *  (a) pure function/framing words (about, because, would, ...) — never
- *      carry a factual claim at all.
- *  (b) synthesis/narration vocabulary that legitimately describes or
- *      frames real evidence without literally repeating its wording
- *      (diagnostic, sequence, assumption, identify, cause, moving,
- *      actual, percentage, ...) — this is prose doing its job, not
- *      fabrication. The real risk case (a concrete named tool/object not
- *      in evidence, e.g. "indicator") is a different, narrower thing than
- *      this list, and staying narrow here is what keeps that signal
- *      visible instead of drowned in noise.
- */
-const GROUNDING_STOPWORDS = new Set([
-  "about", "after", "again", "against", "all", "also", "although", "always",
-  "among", "and", "another", "any", "are", "around", "because", "been",
-  "before", "being", "between", "both", "cannot", "could", "describe",
-  "described", "describes", "during", "each", "either", "every", "first",
-  "found", "from", "further", "gave", "give", "given", "have", "having",
-  "here", "however", "into", "itself", "many", "might", "more", "most",
-  "much", "named", "names", "never", "nothing", "other", "others", "people",
-  "point", "pointed", "points", "really", "should", "showed", "shows",
-  "since", "some", "something", "specific", "specifics", "stayed", "talked",
-  "talking", "tells", "that", "their", "there", "these", "thing", "things",
-  "think", "those", "though", "through", "today", "together", "toward",
-  "under", "until", "using", "walked", "walking", "which", "while",
-  "without", "would", "you're", "your", "yours", "yourself", "fix", "fixes",
-  "tools", "tool", "adding", "added", "addressed", "addressing", "reasons",
-  "reason", "reasoning",
-  // (b) synthesis/narration vocabulary, added after empirical testing
-  // against tonight's own real messages:
-  "moving", "movement", "initial", "assumption", "assumptions", "assumed",
-  "identify", "identified", "identifies", "identifying", "diagnostic",
-  "sequence", "cause", "caused", "causes", "actual", "actually",
-  "percentage", "percent", "number", "numbers", "haven't", "clear",
-  "confirm", "confirmed", "tracing", "traced", "method", "methods",
-  "check", "checked", "checking",
-  // Second round, found on FRESH live output (not the same messages the
-  // first round was tuned against) — confirms this check needs ongoing
-  // tuning against real output, not a one-time fix. All are the same kind
-  // of thing: connector words or paraphrase/synthesis vocabulary, not
-  // fabricated entities.
-  "investigation", "examining", "source", "inconsistency", "distinct",
-  "paired", "timeframe", "rather", "suspected", "followed", "walked",
-  "path", "specific", "mechanical", "addressed",
-]);
 
 export interface GroundingResult {
   passed: boolean;
@@ -80,30 +45,77 @@ export interface GroundingResult {
   checked: boolean;
 }
 
+/**
+ * Concrete physical entities — tools, instruments, measuring devices, and
+ * distinctive hardware — the class the "indicator" incident belongs to.
+ * Seeded from the known fabrication vocabulary plus common domain tooling.
+ * Deliberately conservative: entries are (as far as practical) UNAMBIGUOUS
+ * nouns, to avoid re-introducing false positives on noun/verb words used as
+ * prose (e.g. "drill"/"file"/"scale"/"monitor" are intentionally omitted —
+ * they are commonly verbs). Grows only on observed missed fabrications.
+ *
+ * Coverage is manufacturing-heavy because that is where the real incidents
+ * occurred; cross-domain tooling (clinical, software, field) is sparse and
+ * flagged as a known gap.
+ */
+const CONCRETE_ENTITY_LEMMAS = new Set<string>([
+  // measuring / inspection instruments
+  "indicator", "micrometer", "caliper", "gauge", "protractor", "thermometer",
+  "multimeter", "voltmeter", "ammeter", "oscilloscope", "spectrometer",
+  "tachometer", "manometer", "comparator", "interferometer", "feeler",
+  "dial", "laser", "sensor", "transducer", "scanner", "goniometer",
+  // machine tools / workholding
+  "wrench", "spanner", "screwdriver", "pliers", "lathe", "grinder", "reamer",
+  "mandrel", "arbor", "collet", "chuck", "spindle", "fixture", "gripper",
+  "jig", "vise", "broach", "hone",
+  // parts / hardware / physical objects
+  "bearing", "gasket", "bushing", "flange", "actuator", "robot", "casting",
+  "rivet", "fastener", "washer", "motor", "valve", "manifold", "solenoid",
+  // light cross-domain (sparse — known gap)
+  "syringe", "catheter", "defibrillator", "stethoscope", "spreadsheet",
+  "server", "database",
+]);
+
+/** 5-char stem, tolerant of inflection ("machining"/"machined"), same basis both sides. */
 function stem(word: string): string {
   return word.slice(0, Math.min(5, word.length));
 }
 
-function candidateTerms(message: string): string[] {
-  const words = message.toLowerCase().match(/[a-z][a-z'-]{4,}/g) ?? [];
-  const seen = new Set<string>();
-  const out: string[] = [];
-  for (const raw of words) {
-    const w = raw.replace(/'s$/, "").replace(/^-+|-+$/g, "");
-    if (w.length < 5 || GROUNDING_STOPWORDS.has(w) || seen.has(w)) continue;
-    seen.add(w);
-    out.push(w);
-  }
-  return out;
+/** Normalize a token to a bare lowercase word; strip possessive and a trailing plural -s. */
+function normalize(raw: string): string {
+  const w = raw.toLowerCase().replace(/'s$/, "").replace(/^-+|-+$/g, "");
+  return w;
 }
 
+/** Is this token a known concrete entity? Exact lemma or its singular (strip trailing -s). */
+function isConcreteEntity(word: string): boolean {
+  if (CONCRETE_ENTITY_LEMMAS.has(word)) return true;
+  if (word.endsWith("s") && CONCRETE_ENTITY_LEMMAS.has(word.slice(0, -1))) return true;
+  return false;
+}
+
+/**
+ * Flags concrete-entity nouns in the message that are absent from the cited
+ * evidence. A word is "present" if its stem appears among the evidence stems
+ * (tolerating inflection). Everything that is not a known concrete entity —
+ * all synthesis, framing, and abstract vocabulary — is ignored by design.
+ */
 export function groundingCheck(message: string, evidenceQuotes: string[]): GroundingResult {
   if (evidenceQuotes.length === 0) {
     return { passed: true, ungrounded_terms: [], checked: false };
   }
-  const evidenceWords = evidenceQuotes.join(" ").toLowerCase().match(/[a-z][a-z'-]*/g) ?? [];
-  const evidenceStems = new Set(evidenceWords.map(stem));
-  const candidates = candidateTerms(message);
-  const ungrounded_terms = candidates.filter((t) => !evidenceStems.has(stem(t)));
+  const evidenceStems = new Set((evidenceQuotes.join(" ").toLowerCase().match(/[a-z][a-z'-]*/g) ?? []).map((w) => stem(normalize(w))));
+
+  const words = message.toLowerCase().match(/[a-z][a-z'-]{2,}/g) ?? [];
+  const seen = new Set<string>();
+  const ungrounded_terms: string[] = [];
+  for (const raw of words) {
+    const w = normalize(raw);
+    if (w.length < 3 || seen.has(w)) continue;
+    seen.add(w);
+    if (!isConcreteEntity(w)) continue;          // only concrete entities are in scope
+    if (evidenceStems.has(stem(w))) continue;    // present in the learner's own words → grounded
+    ungrounded_terms.push(w);
+  }
   return { passed: ungrounded_terms.length === 0, ungrounded_terms, checked: true };
 }

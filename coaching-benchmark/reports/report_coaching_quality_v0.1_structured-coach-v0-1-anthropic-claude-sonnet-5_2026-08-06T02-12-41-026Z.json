@@ -1,0 +1,218 @@
+{
+  "report": {
+    "run_id": "coaching_msgvs9fm_wgrg6l",
+    "timestamp": "2026-08-06T02:12:41.026Z",
+    "tier": "coaching_quality",
+    "eval_design_version": "0.1",
+    "corpus_version": "0.1",
+    "subject": "structured-coach v0.1 @ anthropic/claude-sonnet-5",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "cases": [
+      {
+        "case_id": "HF-001",
+        "scores": [
+          {
+            "criterion_id": "answer_comprehension",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "evidence_recognition",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "fact_grounding",
+            "score": 3,
+            "note": "run1[move=highlight_strength, fallback=true, grounding=false]: \"You mentioned: \"parts getting pushed away during the deburring process instead of being cleaned correctly\" and \"everyone thought it was a programming issue\".\" — raw generation was rejected (investigative); the fallback replaced it with a verbatim evidence quote, so no fabrication reached the learner || run2[move=highlight_strength, fallback=true, grounding=false]: \"You mentioned: \"parts getting pushed away during the deburring process instead of being cleaned correctly\" and \"everyone thought it was a programming issue\".\" — raw generation was rejected (noticing); the fallback replaced it with a verbatim evidence quote, so no fabrication reached the learner"
+          },
+          {
+            "criterion_id": "attribution_relationship_fidelity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "scope_fidelity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "focus_quality",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "good_enough_judgment",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "actionability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "brevity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "voice_preservation",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "run_to_run_stability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "retry_effect",
+            "score": "pending"
+          }
+        ],
+        "hard_fail": false,
+        "hard_fail_criteria": [],
+        "incomplete": true,
+        "graded_mean": null
+      },
+      {
+        "case_id": "HF-002",
+        "scores": [
+          {
+            "criterion_id": "answer_comprehension",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "evidence_recognition",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "fact_grounding",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "attribution_relationship_fidelity",
+            "score": 3,
+            "note": "run1[move=request_number, fallback=false, grounding=true]: \"What was the actual drop, in numbers or percentage, by the end of the quarter?\" — no causal relationship asserted as fact || run2[move=request_number, fallback=false, grounding=true]: \"What was the number of customer complaints before and after, or the percentage drop you saw by the end of the quarter?\" — no causal relationship asserted as fact"
+          },
+          {
+            "criterion_id": "scope_fidelity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "focus_quality",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "good_enough_judgment",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "actionability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "brevity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "voice_preservation",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "run_to_run_stability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "retry_effect",
+            "score": "pending"
+          }
+        ],
+        "hard_fail": false,
+        "hard_fail_criteria": [],
+        "incomplete": true,
+        "graded_mean": null
+      }
+    ],
+    "aggregate": {
+      "case_count": 2,
+      "scored_case_count": 0,
+      "incomplete_case_count": 2,
+      "hard_fail_case_count": 0,
+      "hard_fail_case_ids": [],
+      "per_criterion_mean": {
+        "answer_comprehension": null,
+        "evidence_recognition": null,
+        "fact_grounding": 3,
+        "attribution_relationship_fidelity": 3,
+        "scope_fidelity": null,
+        "focus_quality": null,
+        "good_enough_judgment": null,
+        "actionability": null,
+        "brevity": null,
+        "voice_preservation": null,
+        "run_to_run_stability": null,
+        "retry_effect": null
+      },
+      "overall_graded_mean": null
+    }
+  },
+  "gate_runs": [
+    {
+      "hf_case_id": "HF-001",
+      "fixture_case": "001",
+      "hard_gate_criterion": "fact_grounding",
+      "teaching_move": "highlight_strength",
+      "raw_message": "You described a clear investigative path — watching the process, talking with operators, and examining the fixture contact — that led you from \"everyone thought it was a programming issue\" to identifying that the casting wasn't being located consistently, and then to a specific mechanical fix (the locating divots and conical gripper pads).",
+      "final_text": "You mentioned: \"parts getting pushed away during the deburring process instead of being cleaned correctly\" and \"everyone thought it was a programming issue\".",
+      "fallback_used": true,
+      "guardrail_passed": true,
+      "grounding_passed": false,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "raw generation was rejected (investigative); the fallback replaced it with a verbatim evidence quote, so no fabrication reached the learner",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "hf_case_id": "HF-002",
+      "fixture_case": "009",
+      "hard_gate_criterion": "attribution_relationship_fidelity",
+      "teaching_move": "request_number",
+      "raw_message": "What was the actual drop, in numbers or percentage, by the end of the quarter?",
+      "final_text": "What was the actual drop, in numbers or percentage, by the end of the quarter?",
+      "fallback_used": false,
+      "guardrail_passed": true,
+      "grounding_passed": true,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "no causal relationship asserted as fact",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "hf_case_id": "HF-001",
+      "fixture_case": "001",
+      "hard_gate_criterion": "fact_grounding",
+      "teaching_move": "highlight_strength",
+      "raw_message": "You laid out a clear diagnostic path here — from noticing everyone assumed a programming issue, to watching the process and fixture contact yourself, to identifying that the casting wasn't locating consistently, and then tracing that all the way through to a mechanical fix with the divots and conical gripper pads.",
+      "final_text": "You mentioned: \"parts getting pushed away during the deburring process instead of being cleaned correctly\" and \"everyone thought it was a programming issue\".",
+      "fallback_used": true,
+      "guardrail_passed": true,
+      "grounding_passed": false,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "raw generation was rejected (noticing); the fallback replaced it with a verbatim evidence quote, so no fabrication reached the learner",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "hf_case_id": "HF-002",
+      "fixture_case": "009",
+      "hard_gate_criterion": "attribution_relationship_fidelity",
+      "teaching_move": "request_number",
+      "raw_message": "What was the number of customer complaints before and after, or the percentage drop you saw by the end of the quarter?",
+      "final_text": "What was the number of customer complaints before and after, or the percentage drop you saw by the end of the quarter?",
+      "fallback_used": false,
+      "guardrail_passed": true,
+      "grounding_passed": true,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "no causal relationship asserted as fact",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    }
+  ]
+}

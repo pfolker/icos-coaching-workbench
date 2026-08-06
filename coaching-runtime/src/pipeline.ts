@@ -58,7 +58,7 @@ export interface RunCoachingRuntimeOptions {
   fixtureMessage?: string;
 }
 
-function evidenceFor(ids: string[], graph: EvidenceGraph, retryGraph?: EvidenceGraph): NarratorInputEvidence[] {
+export function evidenceFor(ids: string[], graph: EvidenceGraph, retryGraph?: EvidenceGraph): NarratorInputEvidence[] {
   const pool = retryGraph ? [...graph.nodes, ...retryGraph.nodes] : graph.nodes;
   return ids
     .map((id) => pool.find((n) => n.id === id))
@@ -66,7 +66,7 @@ function evidenceFor(ids: string[], graph: EvidenceGraph, retryGraph?: EvidenceG
     .map((n) => ({ claim_id: n.id, quote: n.quote }));
 }
 
-function buildFallbackText(evidence: NarratorInputEvidence[]): string {
+export function buildFallbackText(evidence: NarratorInputEvidence[]): string {
   if (evidence.length === 0) return "Let's look at this answer again — nothing specific enough to quote yet.";
   const quotes = evidence.slice(0, 2).map((e) => `"${e.quote}"`).join(" and ");
   return `You mentioned: ${quotes}.`;

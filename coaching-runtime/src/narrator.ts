@@ -12,6 +12,7 @@
 import { hasLiveApiKey, NoApiKeyError } from "../../evidence-runtime/src/listenEngine";
 import { NARRATOR_SYSTEM_PROMPT } from "./narratorPrompt";
 import { CoachingAct } from "./coachingAct";
+import { AnthropicCoachProvider, CoachProvider } from "./coachProvider";
 
 export { hasLiveApiKey, NoApiKeyError };
 
@@ -31,7 +32,7 @@ export type NarratorResult =
   | { mode: "fixture"; message: string }
   | { mode: "live"; message: string; meta: NarratorLiveMeta };
 
-function buildUserMessage(act: CoachingAct, evidence: NarratorInputEvidence[]): string {
+export function buildUserMessage(act: CoachingAct, evidence: NarratorInputEvidence[]): string {
   const quotes = evidence.map((e) => `- "${e.quote}"`).join("\n");
   return `TEACHING MOVE: ${act.type}\n\nEVIDENCE (verbatim quotes, the only facts you may use):\n${quotes || "(none — nothing to cite)"}`;
 }
@@ -41,37 +42,35 @@ export function runNarratorFixture(message: string): NarratorResult {
   return { mode: "fixture", message };
 }
 
-const DEFAULT_MODEL = "claude-sonnet-5";
+export const DEFAULT_MODEL = "claude-sonnet-5";
+const NARRATOR_MAX_TOKENS = 300;
 
-export async function runNarratorLive(act: CoachingAct, evidence: NarratorInputEvidence[]): Promise<NarratorResult> {
-  if (!hasLiveApiKey()) throw new NoApiKeyError();
-  const apiKey = process.env.ANTHROPIC_API_KEY!;
-  const baseUrl = process.env.ANTHROPIC_BASE_URL ?? "https://api.anthropic.com";
+/**
+ * Live Narrator call — now routed through the extracted CoachProvider seam
+ * (Phase 2) instead of a direct fetch. Behavior and the NarratorResult shape
+ * are unchanged: still one call, still throws NoApiKeyError with no key (the
+ * provider does), still returns the first text block trimmed. The provider is
+ * injectable for testing/other providers; it defaults to Anthropic. The
+ * response parsing (plain text) stays here — the seam is parse-agnostic.
+ */
+export async function runNarratorLive(
+  act: CoachingAct,
+  evidence: NarratorInputEvidence[],
+  provider: CoachProvider = new AnthropicCoachProvider(),
+): Promise<NarratorResult> {
   const model = process.env.COACHING_RUNTIME_MODEL ?? DEFAULT_MODEL;
-
   const userMessage = buildUserMessage(act, evidence);
-  const requestBody = {
-    model,
-    max_tokens: 300,
-    system: NARRATOR_SYSTEM_PROMPT,
-    messages: [{ role: "user", content: userMessage }],
-  };
 
-  const res = await fetch(`${baseUrl}/v1/messages`, {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
-    body: JSON.stringify(requestBody),
-  });
-
-  const bodyText = await res.text();
-  if (!res.ok) throw new Error(`Narrator live call failed: HTTP ${res.status} — ${bodyText.slice(0, 500)}`);
-
-  const parsed = JSON.parse(bodyText) as { content?: { type: string; text?: string }[] };
-  const message = (parsed.content?.find((b) => b.type === "text")?.text ?? "").trim();
+  const completion = await provider.complete(NARRATOR_SYSTEM_PROMPT, userMessage, { model, max_tokens: NARRATOR_MAX_TOKENS });
 
   return {
     mode: "live",
-    message,
-    meta: { model, base_url: baseUrl, request_bytes: JSON.stringify(requestBody).length, response_bytes: bodyText.length },
+    message: completion.text.trim(),
+    meta: {
+      model: completion.meta.model,
+      base_url: completion.meta.base_url,
+      request_bytes: completion.meta.request_bytes,
+      response_bytes: completion.meta.response_bytes,
+    },
   };
 }
