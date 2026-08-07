@@ -31,6 +31,23 @@ import { AnthropicCoachProvider, CoachProvider, ProviderCallMeta } from "./coach
 /** The Narrator's existing token budget — kept identical so v0.1 changes only the seam, not the behavior. */
 const COACH_MAX_TOKENS = 300;
 
+/**
+ * Readiness predicate (readiness-decoupling): does the answer state a
+ * MEANINGFUL result? Structural approximation from claim_types the Listen
+ * stage already assigned — a business_value claim (a stated impact) OR ≥2
+ * outcome claims (more than a single bare "it worked"). Deliberately does NOT
+ * use has_quantity: an unquantified-but-real result (Case 001) must still
+ * count. KNOWN LIMITATION: this is a structural proxy — it counts result-shaped
+ * claims, it does not judge whether the result is substantive. A substantive
+ * SINGLE result with no business_value would be under-counted here. See report:
+ * flagged as a third Semantic-Opportunity-Detector anchor.
+ */
+export function computeResultReadiness(graph: EvidenceGraph): boolean {
+  const hasBusinessValue = graph.nodes.some((n) => n.claim_type === "business_value");
+  const outcomeCount = graph.nodes.filter((n) => n.claim_type === "outcome").length;
+  return hasBusinessValue || outcomeCount >= 2;
+}
+
 export interface StructuredCoachOptions {
   graph: EvidenceGraph;
   retryGraph?: EvidenceGraph;
@@ -52,6 +69,8 @@ export interface StructuredCoachResult {
   fallback_used: boolean;
   /** which evidence quotes the coach was allowed to use (grounding is checked against these) */
   evidence_quotes: string[];
+  /** readiness decision, SEPARATE from the move: does the answer state a meaningful result? (drives ADVANCE vs RETRY on highlight_strength) */
+  has_meaningful_result: boolean;
   /** provider + model that produced this output — recorded so scoring stays honest (item 2) */
   provider: string;
   model: string;
@@ -70,7 +89,8 @@ export async function runStructuredCoach(opts: StructuredCoachOptions): Promise<
   const move = selectTeachingMove(opts.graph, opts.retryGraph);
   const act = assembleCoachingAct(move);
   const evidence = evidenceFor(act.evidence_refs, opts.graph, opts.retryGraph);
-  const userMessage = buildUserMessage(act, evidence);
+  const has_meaningful_result = computeResultReadiness(opts.graph);
+  const userMessage = buildUserMessage(act, evidence, { hasMeaningfulResult: has_meaningful_result });
 
   const completion = await provider.complete(NARRATOR_SYSTEM_PROMPT, userMessage, { model, max_tokens: COACH_MAX_TOKENS });
   const raw_message = completion.text.trim();
@@ -90,6 +110,7 @@ export async function runStructuredCoach(opts: StructuredCoachOptions): Promise<
     final_text: passed ? raw_message : buildFallbackText(evidence),
     fallback_used: !passed,
     evidence_quotes: evidence.map((e) => e.quote),
+    has_meaningful_result,
     provider: completion.meta.provider,
     model: completion.meta.model,
     meta: completion.meta,

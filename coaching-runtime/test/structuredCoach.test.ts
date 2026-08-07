@@ -3,7 +3,9 @@ import { validateEvidence } from "../../evidence-validator/src/index";
 import { materializeSourceSpans } from "../../evidence-runtime/src/modelOutput";
 import { buildEvidenceGraph } from "../../evidence-runtime/src/evidenceGraph";
 import * as case001 from "../../evidence-runtime/fixtures/case001";
-import { runStructuredCoach } from "../src/structuredCoach";
+import * as case005 from "../../evidence-runtime/fixtures/case005";
+import { runStructuredCoach, computeResultReadiness } from "../src/structuredCoach";
+import { directivesFor } from "../src/narrator";
 import { CoachProvider, ProviderCompletion } from "../src/coachProvider";
 
 /**
@@ -15,6 +17,32 @@ import { CoachProvider, ProviderCompletion } from "../src/coachProvider";
 function case001Graph() {
   return buildEvidenceGraph(validateEvidence(materializeSourceSpans(case001.TRANSCRIPT, case001.LISTEN_ENGINE_FIXTURE)));
 }
+function case005Graph() {
+  return buildEvidenceGraph(validateEvidence(materializeSourceSpans(case005.TRANSCRIPT, case005.LISTEN_ENGINE_FIXTURE)));
+}
+
+describe("readiness decoupling — move and ADVANCE/RETRY are separate decisions", () => {
+  it("highlight_strength ADVANCEs when a meaningful result is present, RETRYs when not (defaults to ADVANCE with no signal)", () => {
+    expect(directivesFor("highlight_strength", { hasMeaningfulResult: true }).status).toContain("ADVANCE");
+    expect(directivesFor("highlight_strength", { hasMeaningfulResult: false }).status).toContain("RETRY");
+    expect(directivesFor("highlight_strength").status).toContain("ADVANCE");
+  });
+
+  it("the RETRY variant still affirms the strongest moment (combined affirm+retry), not a bare request", () => {
+    const d = directivesFor("highlight_strength", { hasMeaningfulResult: false });
+    expect(d.focus).toContain("strongest moment");
+    expect(d.status.toLowerCase()).toContain("affirming");
+  });
+
+  it("computeResultReadiness: Case 001 (business_value + 3 outcomes) = true; Case 005 (1 outcome, no business_value) = false", () => {
+    expect(computeResultReadiness(case001Graph())).toBe(true);
+    expect(computeResultReadiness(case005Graph())).toBe(false);
+  });
+
+  it("does not touch request moves (they stay RETRY regardless of readiness)", () => {
+    expect(directivesFor("request_number", { hasMeaningfulResult: true }).status).toContain("RETRY");
+  });
+});
 
 class CannedProvider implements CoachProvider {
   readonly name = "canned";

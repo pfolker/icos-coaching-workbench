@@ -40,13 +40,32 @@ export type NarratorResult =
  */
 export interface CoachDirectives { focus: string; status: string; }
 
-export function directivesFor(type: CoachingAct["type"]): CoachDirectives {
+/**
+ * Readiness is a SEPARATE decision from the teaching move (Findings C + E of
+ * the selection investigation). The move still identifies and affirms the
+ * strongest moment; whether the learner should ADVANCE or RETRY keys off
+ * whether the answer states a meaningful result — NOT off the richness
+ * threshold that picked highlight_strength, and NOT off has_quantity (an
+ * unquantified-but-real result, e.g. Case 001, must still ADVANCE).
+ *
+ * `hasMeaningfulResult` is computed upstream from the graph (see
+ * structuredCoach.computeResultReadiness). When absent, readiness defaults to
+ * ADVANCE — preserving prior behavior for callers that don't compute it.
+ */
+export interface ReadinessInput { hasMeaningfulResult?: boolean; }
+
+export function directivesFor(type: CoachingAct["type"], readiness?: ReadinessInput): CoachDirectives {
   switch (type) {
-    case "highlight_strength":
-      return {
-        focus: "Name the SINGLE strongest moment in the evidence — the one thing most worth keeping. Do NOT restate or summarize the rest of the answer.",
-        status: "ADVANCE — end by telling the learner this answer is ready to lock in and move on.",
-      };
+    case "highlight_strength": {
+      const ready = readiness?.hasMeaningfulResult ?? true;
+      const focus = "Name the SINGLE strongest moment in the evidence — the one thing most worth keeping. Do NOT restate or summarize the rest of the answer.";
+      return ready
+        ? { focus, status: "ADVANCE — end by telling the learner this answer is ready to lock in and move on." }
+        : {
+            focus,
+            status: "RETRY — after affirming that strongest moment, tell the learner to take one more pass changing exactly one thing: state the actual result of the work (what changed because of it), since the answer doesn't yet state a meaningful result.",
+          };
+    }
     case "request_number":
       return {
         focus: "Point at the single place a concrete number/result is missing. Do NOT restate the rest of the answer.",
@@ -70,9 +89,9 @@ export function directivesFor(type: CoachingAct["type"]): CoachDirectives {
   }
 }
 
-export function buildUserMessage(act: CoachingAct, evidence: NarratorInputEvidence[]): string {
+export function buildUserMessage(act: CoachingAct, evidence: NarratorInputEvidence[], readiness?: ReadinessInput): string {
   const quotes = evidence.map((e) => `- "${e.quote}"`).join("\n");
-  const d = directivesFor(act.type);
+  const d = directivesFor(act.type, readiness);
   return `TEACHING MOVE: ${act.type}\nFOCUS: ${d.focus}\nSTATUS: ${d.status}\n\nEVIDENCE (verbatim quotes, the only facts you may use):\n${quotes || "(none — nothing to cite)"}`;
 }
 
