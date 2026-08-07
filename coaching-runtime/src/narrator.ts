@@ -32,9 +32,48 @@ export type NarratorResult =
   | { mode: "fixture"; message: string }
   | { mode: "live"; message: string; meta: NarratorLiveMeta };
 
+/**
+ * The FOCUS + STATUS directives (v0.2) — derived DETERMINISTICALLY from the
+ * Teaching Move, not chosen by the Narrator. Status (advance vs. retry) is a
+ * policy decision that belongs to the deterministic layer; the Narrator only
+ * renders it. FOCUS enforces coach-not-reviewer (one thing, never a summary).
+ */
+export interface CoachDirectives { focus: string; status: string; }
+
+export function directivesFor(type: CoachingAct["type"]): CoachDirectives {
+  switch (type) {
+    case "highlight_strength":
+      return {
+        focus: "Name the SINGLE strongest moment in the evidence — the one thing most worth keeping. Do NOT restate or summarize the rest of the answer.",
+        status: "ADVANCE — end by telling the learner this answer is ready to lock in and move on.",
+      };
+    case "request_number":
+      return {
+        focus: "Point at the single place a concrete number/result is missing. Do NOT restate the rest of the answer.",
+        status: "RETRY — end by telling the learner to take one more pass changing exactly one thing: add a specific number or measured result.",
+      };
+    case "request_constraint":
+      return {
+        focus: "Point at the single place a constraint/limit is missing. Do NOT restate the rest of the answer.",
+        status: "RETRY — end by telling the learner to take one more pass changing exactly one thing: name a specific constraint or limit they worked within.",
+      };
+    case "request_tool":
+      return {
+        focus: "Point at the single place a named tool/method is missing. Do NOT restate the rest of the answer.",
+        status: "RETRY — end by telling the learner to take one more pass changing exactly one thing: name the specific tool or method they used.",
+      };
+    case "contrast_attempts":
+      return {
+        focus: "Name the ONE thing that changed between the two attempts. Do NOT restate the rest.",
+        status: "STATUS — end by saying whether that one change makes the answer ready to lock in, or still needs one more pass.",
+      };
+  }
+}
+
 export function buildUserMessage(act: CoachingAct, evidence: NarratorInputEvidence[]): string {
   const quotes = evidence.map((e) => `- "${e.quote}"`).join("\n");
-  return `TEACHING MOVE: ${act.type}\n\nEVIDENCE (verbatim quotes, the only facts you may use):\n${quotes || "(none — nothing to cite)"}`;
+  const d = directivesFor(act.type);
+  return `TEACHING MOVE: ${act.type}\nFOCUS: ${d.focus}\nSTATUS: ${d.status}\n\nEVIDENCE (verbatim quotes, the only facts you may use):\n${quotes || "(none — nothing to cite)"}`;
 }
 
 /** Fixture mode: a hand-authored message, for deterministic/free testing. */
