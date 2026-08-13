@@ -1,0 +1,186 @@
+{
+  "report": {
+    "run_id": "coaching_msqvy21u_owrnnc",
+    "timestamp": "2026-08-13T02:14:53.154Z",
+    "tier": "coaching_quality",
+    "eval_design_version": "0.1",
+    "corpus_version": "0.1",
+    "subject": "structured-coach v0.1 @ anthropic/claude-sonnet-5",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "cases": [
+      {
+        "case_id": "HF-001",
+        "scores": [
+          {
+            "criterion_id": "answer_comprehension",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "evidence_recognition",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "fact_grounding",
+            "score": 3,
+            "note": "run1[move=highlight_strength, fallback=false, grounding=true]: \"The strongest moment here is when you moved past the assumption everyone else had made — \"everyone thought it was a programming issue\" — and instead went to observe the actual physical process, watching operators and checking how the fixture contacted the part, which is what led you to the real cause.\n\nThat diagnostic move is worth keeping as-is — this answer is ready to lock in and move on.\" — learner-facing message is fully grounded in the cited evidence"
+          },
+          {
+            "criterion_id": "attribution_relationship_fidelity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "scope_fidelity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "focus_quality",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "good_enough_judgment",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "actionability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "brevity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "voice_preservation",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "run_to_run_stability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "retry_effect",
+            "score": "pending"
+          }
+        ],
+        "hard_fail": false,
+        "hard_fail_criteria": [],
+        "incomplete": true,
+        "graded_mean": null
+      },
+      {
+        "case_id": "HF-002",
+        "scores": [
+          {
+            "criterion_id": "answer_comprehension",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "evidence_recognition",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "fact_grounding",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "attribution_relationship_fidelity",
+            "score": 3,
+            "note": "run1[move=request_number, fallback=false, grounding=true]: \"You say complaints \"dropped by the end of the quarter\" — but there's no number there telling us how much they dropped.\n\nTake one more pass and add the specific number or measured result for that drop before locking this in.\" — no causal relationship asserted as fact"
+          },
+          {
+            "criterion_id": "scope_fidelity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "focus_quality",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "good_enough_judgment",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "actionability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "brevity",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "voice_preservation",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "run_to_run_stability",
+            "score": "pending"
+          },
+          {
+            "criterion_id": "retry_effect",
+            "score": "pending"
+          }
+        ],
+        "hard_fail": false,
+        "hard_fail_criteria": [],
+        "incomplete": true,
+        "graded_mean": null
+      }
+    ],
+    "aggregate": {
+      "case_count": 2,
+      "scored_case_count": 0,
+      "incomplete_case_count": 2,
+      "hard_fail_case_count": 0,
+      "hard_fail_case_ids": [],
+      "per_criterion_mean": {
+        "answer_comprehension": null,
+        "evidence_recognition": null,
+        "fact_grounding": 3,
+        "attribution_relationship_fidelity": 3,
+        "scope_fidelity": null,
+        "focus_quality": null,
+        "good_enough_judgment": null,
+        "actionability": null,
+        "brevity": null,
+        "voice_preservation": null,
+        "run_to_run_stability": null,
+        "retry_effect": null
+      },
+      "overall_graded_mean": null
+    }
+  },
+  "gate_runs": [
+    {
+      "hf_case_id": "HF-001",
+      "fixture_case": "001",
+      "hard_gate_criterion": "fact_grounding",
+      "teaching_move": "highlight_strength",
+      "raw_message": "The strongest moment here is when you moved past the assumption everyone else had made — \"everyone thought it was a programming issue\" — and instead went to observe the actual physical process, watching operators and checking how the fixture contacted the part, which is what led you to the real cause.\n\nThat diagnostic move is worth keeping as-is — this answer is ready to lock in and move on.",
+      "final_text": "The strongest moment here is when you moved past the assumption everyone else had made — \"everyone thought it was a programming issue\" — and instead went to observe the actual physical process, watching operators and checking how the fixture contacted the part, which is what led you to the real cause.\n\nThat diagnostic move is worth keeping as-is — this answer is ready to lock in and move on.",
+      "fallback_used": false,
+      "guardrail_passed": true,
+      "grounding_passed": true,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "learner-facing message is fully grounded in the cited evidence",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "hf_case_id": "HF-002",
+      "fixture_case": "009",
+      "hard_gate_criterion": "attribution_relationship_fidelity",
+      "teaching_move": "request_number",
+      "raw_message": "You say complaints \"dropped by the end of the quarter\" — but there's no number there telling us how much they dropped.\n\nTake one more pass and add the specific number or measured result for that drop before locking this in.",
+      "final_text": "You say complaints \"dropped by the end of the quarter\" — but there's no number there telling us how much they dropped.\n\nTake one more pass and add the specific number or measured result for that drop before locking this in.",
+      "fallback_used": false,
+      "guardrail_passed": true,
+      "grounding_passed": true,
+      "fabrication_detected": false,
+      "gate_pass_signal": true,
+      "signal_reason": "no causal relationship asserted as fact",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5"
+    }
+  ]
+}

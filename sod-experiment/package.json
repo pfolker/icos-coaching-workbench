@@ -1,0 +1,24 @@
+{
+  "name": "sod-experiment",
+  "version": "0.1.0",
+  "description": "Semantic Opportunity Detector v0.1 — CONTAINED EXPERIMENT ONLY. Tests one question: can an LLM reliably perceive coaching-relevant semantic signals that the deterministic Evidence Graph representation cannot carry? SOD proposes fixed-vocabulary semantic observations traced to admitted evidence; it selects no habit, no principle, no Teaching Move, no ADVANCE/RETRY, and writes no learner-facing prose. Nothing in the repository imports this package: the structured coach's behavior is unchanged by construction.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "experiment": "tsx bin/run-experiment.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module"
+}

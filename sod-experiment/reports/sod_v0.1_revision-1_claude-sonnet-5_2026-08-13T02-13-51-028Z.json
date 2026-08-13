@@ -1,0 +1,1181 @@
+{
+  "experiment": "sod_v0.1",
+  "condition": "revision-1",
+  "prompt_revision": 1,
+  "timestamp": "2026-08-13T02:13:51.028Z",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "runs_per_case": 3,
+  "sampling": "provider default (CoachProvider exposes no temperature parameter)",
+  "system_prompt": "You are a Semantic Opportunity Detector. Your only job is to NOTICE things. You do not coach, and you do not decide anything.\n\nYou will be given the ADMITTED EVIDENCE from one interview answer: verbatim claims the speaker made, each with a claim_type and a speaker_assertion flag, plus validated relationships between those claims. This is the complete set of facts available to you. There is no other text.\n\n## What you produce\n\nZero or more semantic observations, drawn ONLY from this closed vocabulary:\n\n### ownership_dilution\nMeans: The answer makes it difficult to distinguish the speaker's individual contribution from the team's contribution.\nDoes NOT apply when: A single incidental plural pronoun in an answer whose actions are otherwise clearly the speaker's own is NOT dilution. Dilution requires that a reader could not say which of the described actions the speaker personally performed.\n\n### result_needs_substance\nMeans: The answer contains result-shaped language or an implied outcome, but the stated result does not carry enough substance to show a meaningful effect.\nDoes NOT apply when: An answer with NO result at all is not this tag (nothing result-shaped exists to judge). A result that is unquantified but concrete and consequential is not this tag either — the test is substance, not the presence of a number.\n\n### assumption_reversal\nMeans: A meaningful strength of the answer is the contrast between what was initially believed and what the speaker subsequently discovered.\nDoes NOT apply when: A problem that was merely unexpected, or a fact that did not match a record, is not a reversal. There must be a stated prior belief AND a later finding that overturns it.\n\n### unresolved_alternative_cause\nMeans: The speaker attributes an outcome to one explanation while the same answer contains another plausible explanation that is never addressed.\nDoes NOT apply when: This tag has two preconditions and both must hold. FIRST, the speaker must actually have asserted a cause. Look for it in the evidence: a claim with speaker_assertion=true that states the cause, or an admitted relationship that encodes the attribution. Claims that merely sit next to each other, or that follow one another in time, are NOT an attribution — an action followed by an outcome with no stated cause is NOT this tag, no matter how natural the causal reading feels. SECOND, the competing explanation must be a plausible CAUSE, not another outcome, another result, or a later step in the same sequence. Two findings that could both be parts of one chain are not competing explanations. If either precondition fails, do not use this tag. The tag marks CAUSAL UNCERTAINTY; it never decides which explanation is correct.\n\nIf none of these apply to this answer, return an empty list. An empty list is a correct and expected answer. Do not stretch a definition to produce output.\n\nIf more than one applies, report all of them. You are not choosing which one matters most.\n\n## Hard rules\n\n1. GROUND EVERY OBSERVATION. Each observation must cite the ids of the claims or relationships that support it. Only cite ids that appear in the evidence given to you.\n2. DO NOT INVENT RELATIONSHIPS. Two real facts placed side by side do not establish a connection between them. If the speaker did not state a link, and no admitted relationship encodes it, the link does not exist for you.\n3. DO NOT PROMOTE BELIEFS INTO FACTS. A claim with speaker_assertion=true is something the speaker believes, not something established. Report it as a stated belief. Never treat it as proven, and never decide whether it is true.\n4. DO NOT RESOLVE UNCERTAINTY. If two explanations are both plausible, your job is to notice that the question is open. It is not to answer it. Naming a winner is a failure, not a success.\n5. STAY INSIDE THE VOCABULARY. Do not invent new tags. Do not describe issues that have no tag.\n\n## What you must never output\n\nYou do not choose a habit or habit_id. You do not choose a teaching principle or explain why anything matters to an interviewer. You do not choose a teaching move. You do not decide ADVANCE or RETRY. You do not decide which observation wins. You do not write anything addressed to the learner, and you do not write coaching, advice, encouragement, or suggestions. Something else does all of that. You only notice.\n\n## Output format\n\nReturn raw JSON and nothing else. No prose before or after, no markdown fences.\n\n{\"observations\": [{\"tag\": \"<one tag from the vocabulary>\", \"evidence_refs\": [\"<id>\", \"...\"], \"confidence\": <number between 0 and 1>, \"basis\": \"<one sentence, stating only what in the cited evidence makes this tag apply>\"}]}\n\nThe \"basis\" field is an audit note for engineers. It is never shown to a learner. Keep it factual and short.\n\nFor no observations, return: {\"observations\": []}",
+  "results": [
+    {
+      "kind": "primary",
+      "case_id": "001",
+      "label": "Founder's original (deburring)",
+      "domain": "manufacturing",
+      "spec": {
+        "case_id": "001",
+        "target": "assumption_reversal",
+        "authority": "Founder-supported (Case 001 = HF-001)",
+        "expected_observation": "The memorable strength is that an expected software explanation was overturned by the speaker's mechanical diagnosis."
+      },
+      "existing_mechanisms": {
+        "deterministic_candidates": [
+          "O3_unquantified_result",
+          "O5_vagueness"
+        ],
+        "deterministic_selected_opportunity": "O5_vagueness",
+        "deterministic_habit": "H4",
+        "structured_teaching_move": "highlight_strength",
+        "structured_readiness_has_meaningful_result": true
+      },
+      "sod_input": {
+        "nodes": [
+          {
+            "id": "a_problem",
+            "claim_type": "problem",
+            "quote": "parts getting pushed away during the deburring process instead of being cleaned correctly",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_prior_belief",
+            "claim_type": "prior_belief",
+            "quote": "everyone thought it was a programming issue",
+            "speaker_assertion": true
+          },
+          {
+            "id": "a_diagnosis1",
+            "claim_type": "self_reported_diagnosis",
+            "quote": "I realized the robot was actually applying force in a way that allowed the casting to move",
+            "speaker_assertion": true
+          },
+          {
+            "id": "a_investigated",
+            "claim_type": "action",
+            "quote": "I spent time watching the process, talking with the operators, and looking at how the fixture contacted the part",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_diagnosis2",
+            "claim_type": "self_reported_diagnosis",
+            "quote": "I realized we were grabbing onto a rough casting surface that wasn't locating the part consistently",
+            "speaker_assertion": true
+          },
+          {
+            "id": "a_fixture_mod",
+            "claim_type": "action",
+            "quote": "I modified the fixture by machining two locating divots into the face of the part",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_gripper_redesign",
+            "claim_type": "action",
+            "quote": "redesigned the gripper pads with a conical profile so they locked into those divots every cycle",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_out_rigid",
+            "claim_type": "outcome",
+            "quote": "the part stayed rigid during deburring",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_out_consistent",
+            "claim_type": "outcome",
+            "quote": "the brushing process became consistent",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_out_eliminated",
+            "claim_type": "outcome",
+            "quote": "we eliminated the issue completely",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_business_value",
+            "claim_type": "business_value",
+            "quote": "It also improved overall throughput because operators no longer had to stop and inspect parts",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_reflection",
+            "claim_type": "reflection",
+            "quote": "the best automation solution isn't changing the robot program—it's changing the mechanical design so the process becomes repeatable",
+            "speaker_assertion": false
+          }
+        ],
+        "edges": [
+          {
+            "id": "b_contrast_belief",
+            "relationship_type": "contrast_marker",
+            "component_ids": [
+              "a_prior_belief",
+              "a_diagnosis1"
+            ],
+            "marker_text": "but"
+          },
+          {
+            "id": "b_enum_actions",
+            "relationship_type": "enumeration",
+            "component_ids": [
+              "a_fixture_mod",
+              "a_gripper_redesign"
+            ],
+            "marker_text": ""
+          },
+          {
+            "id": "b_because_value",
+            "relationship_type": "explicit_connective",
+            "component_ids": [
+              "a_business_value"
+            ],
+            "marker_text": "because"
+          }
+        ]
+      },
+      "runs": [
+        {
+          "run": 1,
+          "observations": [
+            {
+              "tag": "assumption_reversal",
+              "evidence_refs": [
+                "a_prior_belief",
+                "a_diagnosis1",
+                "b_contrast_belief"
+              ],
+              "confidence": 0.9,
+              "basis": "The prior belief that it was a programming issue is explicitly contrasted via 'but' with the later realization that the robot was applying force allowing the casting to move."
+            },
+            {
+              "tag": "unresolved_alternative_cause",
+              "evidence_refs": [
+                "a_diagnosis1",
+                "a_diagnosis2",
+                "a_fixture_mod",
+                "a_gripper_redesign"
+              ],
+              "confidence": 0.6,
+              "basis": "Two distinct self-reported diagnoses (force application vs. rough casting surface locating inconsistency) are both asserted as causes of the same problem, but only the second is addressed by the subsequent fixture and gripper actions, leaving the first unaddressed."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"assumption_reversal\", \"evidence_refs\": [\"a_prior_belief\", \"a_diagnosis1\", \"b_contrast_belief\"], \"confidence\": 0.9, \"basis\": \"The prior belief that it was a programming issue is explicitly contrasted via 'but' with the later realization that the robot was applying force allowing the casting to move.\"}, {\"tag\": \"unresolved_alternative_cause\", \"evidence_refs\": [\"a_diagnosis1\", \"a_diagnosis2\", \"a_fixture_mod\", \"a_gripper_redesign\"], \"confidence\": 0.6, \"basis\": \"Two distinct self-reported diagnoses (force application vs. rough casting surface locating inconsistency) are both asserted as causes of the same problem, but only the second is addressed by the subsequent fixture and gripper actions, leaving the first unaddressed.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 7196,
+            "response_bytes": 7520
+          }
+        },
+        {
+          "run": 2,
+          "observations": [
+            {
+              "tag": "assumption_reversal",
+              "evidence_refs": [
+                "a_prior_belief",
+                "a_diagnosis1",
+                "b_contrast_belief"
+              ],
+              "confidence": 0.85,
+              "basis": "The evidence shows a stated prior belief ('everyone thought it was a programming issue') explicitly contrasted via the 'but' marker with a later diagnosis ('robot was actually applying force in a way that allowed the casting to move'), meeting the reversal criteria."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"assumption_reversal\", \"evidence_refs\": [\"a_prior_belief\", \"a_diagnosis1\", \"b_contrast_belief\"], \"confidence\": 0.85, \"basis\": \"The evidence shows a stated prior belief ('everyone thought it was a programming issue') explicitly contrasted via the 'but' marker with a later diagnosis ('robot was actually applying force in a way that allowed the casting to move'), meeting the reversal criteria.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 7196,
+            "response_bytes": 8897
+          }
+        },
+        {
+          "run": 3,
+          "observations": [
+            {
+              "tag": "assumption_reversal",
+              "evidence_refs": [
+                "a_prior_belief",
+                "a_diagnosis1",
+                "b_contrast_belief"
+              ],
+              "confidence": 0.9,
+              "basis": "The evidence explicitly contrasts a stated prior belief ('everyone thought it was a programming issue') with a later finding ('robot was actually applying force in a way that allowed the casting to move') via a contrast_marker relationship."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"assumption_reversal\", \"evidence_refs\": [\"a_prior_belief\", \"a_diagnosis1\", \"b_contrast_belief\"], \"confidence\": 0.9, \"basis\": \"The evidence explicitly contrasts a stated prior belief ('everyone thought it was a programming issue') with a later finding ('robot was actually applying force in a way that allowed the casting to move') via a contrast_marker relationship.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 7196,
+            "response_bytes": 9782
+          }
+        }
+      ]
+    },
+    {
+      "kind": "primary",
+      "case_id": "005",
+      "label": "Ambiguous ownership (reports automation)",
+      "domain": "data/reporting",
+      "spec": {
+        "case_id": "005",
+        "target": "result_needs_substance",
+        "authority": "Founder-supported",
+        "expected_observation": "Result-shaped language exists ('now it runs on its own'), but meaningful impact remains weak or incomplete."
+      },
+      "existing_mechanisms": {
+        "deterministic_candidates": [
+          "O3_missing_result",
+          "O4_ownership_hiding",
+          "O5_vagueness"
+        ],
+        "deterministic_selected_opportunity": "O3_missing_result",
+        "deterministic_habit": "H2",
+        "structured_teaching_move": "highlight_strength",
+        "structured_readiness_has_meaningful_result": false
+      },
+      "sod_input": {
+        "nodes": [
+          {
+            "id": "a_problem",
+            "claim_type": "problem",
+            "quote": "the reports were going out late every week",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_looked_into",
+            "claim_type": "action",
+            "quote": "we looked into the process",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_finding",
+            "claim_type": "self_reported_diagnosis",
+            "quote": "the data pull was happening manually and someone had to remember to kick it off every Friday",
+            "speaker_assertion": true
+          },
+          {
+            "id": "a_automated",
+            "claim_type": "action",
+            "quote": "We automated it with a scheduled script",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_outcome",
+            "claim_type": "outcome",
+            "quote": "now it runs on its own",
+            "speaker_assertion": false
+          }
+        ],
+        "edges": [
+          {
+            "id": "b_so",
+            "relationship_type": "explicit_connective",
+            "component_ids": [
+              "a_problem",
+              "a_looked_into"
+            ],
+            "marker_text": "so"
+          }
+        ]
+      },
+      "runs": [
+        {
+          "run": 1,
+          "observations": [
+            {
+              "tag": "ownership_dilution",
+              "evidence_refs": [
+                "a_looked_into",
+                "a_automated"
+              ],
+              "confidence": 0.75,
+              "basis": "Both the investigation and the fix are described with 'we' throughout, leaving no way to tell what the speaker personally did versus the team."
+            },
+            {
+              "tag": "result_needs_substance",
+              "evidence_refs": [
+                "a_outcome",
+                "a_problem"
+              ],
+              "confidence": 0.6,
+              "basis": "The stated outcome 'now it runs on its own' describes the automation working but does not state whether the original late-reports problem was actually resolved."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"ownership_dilution\", \"evidence_refs\": [\"a_looked_into\", \"a_automated\"], \"confidence\": 0.75, \"basis\": \"Both the investigation and the fix are described with 'we' throughout, leaving no way to tell what the speaker personally did versus the team.\"}, {\"tag\": \"result_needs_substance\", \"evidence_refs\": [\"a_outcome\", \"a_problem\"], \"confidence\": 0.6, \"basis\": \"The stated outcome 'now it runs on its own' describes the automation working but does not state whether the original late-reports problem was actually resolved.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5703,
+            "response_bytes": 3653
+          }
+        },
+        {
+          "run": 2,
+          "observations": [
+            {
+              "tag": "ownership_dilution",
+              "evidence_refs": [
+                "a_looked_into",
+                "a_automated"
+              ],
+              "confidence": 0.7,
+              "basis": "Both key actions (\"we looked into the process\" and \"We automated it\") are described with team pronouns, leaving no claim that identifies what the speaker personally did."
+            },
+            {
+              "tag": "result_needs_substance",
+              "evidence_refs": [
+                "a_outcome"
+              ],
+              "confidence": 0.6,
+              "basis": "The outcome \"now it runs on its own\" describes automation status but does not state whether the original problem of late weekly reports was actually resolved or by how much."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"ownership_dilution\", \"evidence_refs\": [\"a_looked_into\", \"a_automated\"], \"confidence\": 0.7, \"basis\": \"Both key actions (\\\"we looked into the process\\\" and \\\"We automated it\\\") are described with team pronouns, leaving no claim that identifies what the speaker personally did.\"}, {\"tag\": \"result_needs_substance\", \"evidence_refs\": [\"a_outcome\"], \"confidence\": 0.6, \"basis\": \"The outcome \\\"now it runs on its own\\\" describes automation status but does not state whether the original problem of late weekly reports was actually resolved or by how much.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5703,
+            "response_bytes": 4199
+          }
+        },
+        {
+          "run": 3,
+          "observations": [
+            {
+              "tag": "ownership_dilution",
+              "evidence_refs": [
+                "a_looked_into",
+                "a_automated"
+              ],
+              "confidence": 0.75,
+              "basis": "All described actions ('we looked into the process', 'We automated it') are attributed to a plural group with no claim distinguishing the speaker's individual contribution."
+            },
+            {
+              "tag": "result_needs_substance",
+              "evidence_refs": [
+                "a_outcome",
+                "a_problem"
+              ],
+              "confidence": 0.6,
+              "basis": "The outcome 'now it runs on its own' describes the automation running but never states whether the original problem of late weekly reports was actually resolved."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"ownership_dilution\", \"evidence_refs\": [\"a_looked_into\", \"a_automated\"], \"confidence\": 0.75, \"basis\": \"All described actions ('we looked into the process', 'We automated it') are attributed to a plural group with no claim distinguishing the speaker's individual contribution.\"}, {\"tag\": \"result_needs_substance\", \"evidence_refs\": [\"a_outcome\", \"a_problem\"], \"confidence\": 0.6, \"basis\": \"The outcome 'now it runs on its own' describes the automation running but never states whether the original problem of late weekly reports was actually resolved.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5703,
+            "response_bytes": 4548
+          }
+        }
+      ]
+    },
+    {
+      "kind": "primary",
+      "case_id": "006",
+      "label": "Contradictory ownership (staging env)",
+      "domain": "software",
+      "spec": {
+        "case_id": "006",
+        "target": "ownership_dilution",
+        "authority": "Founder-supported",
+        "expected_observation": "Individual contribution becomes unclear because 'I', 'the team' and 'we' ownership are mixed."
+      },
+      "existing_mechanisms": {
+        "deterministic_candidates": [
+          "O3_missing_result"
+        ],
+        "deterministic_selected_opportunity": "O3_missing_result",
+        "deterministic_habit": "H2",
+        "structured_teaching_move": "request_number",
+        "structured_readiness_has_meaningful_result": false
+      },
+      "sod_input": {
+        "nodes": [
+          {
+            "id": "a_decided",
+            "claim_type": "decision",
+            "quote": "I decided we needed a better testing process before releasing updates",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_built",
+            "claim_type": "action",
+            "quote": "I built out a staging environment that mirrored production",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_team_built",
+            "claim_type": "action",
+            "quote": "The team put together the test suite",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_agreed",
+            "claim_type": "decision",
+            "quote": "we all agreed on the rollout schedule together",
+            "speaker_assertion": false
+          }
+        ],
+        "edges": [
+          {
+            "id": "b_enum",
+            "relationship_type": "enumeration",
+            "component_ids": [
+              "a_built",
+              "a_team_built"
+            ],
+            "marker_text": ""
+          }
+        ]
+      },
+      "runs": [
+        {
+          "run": 1,
+          "observations": [],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": []}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5594,
+            "response_bytes": 3962
+          }
+        },
+        {
+          "run": 2,
+          "observations": [
+            {
+              "tag": "ownership_dilution",
+              "evidence_refs": [
+                "a_built",
+                "a_team_built",
+                "b_enum",
+                "a_agreed"
+              ],
+              "confidence": 0.6,
+              "basis": "The enumeration relationship pairs the speaker's individual action (a_built) with a team action (a_team_built), and the decision claim a_agreed is framed as a collective 'we all' action, mixing individual and group attribution across the narrative."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"ownership_dilution\", \"evidence_refs\": [\"a_built\", \"a_team_built\", \"b_enum\", \"a_agreed\"], \"confidence\": 0.6, \"basis\": \"The enumeration relationship pairs the speaker's individual action (a_built) with a team action (a_team_built), and the decision claim a_agreed is framed as a collective 'we all' action, mixing individual and group attribution across the narrative.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5594,
+            "response_bytes": 6317
+          }
+        },
+        {
+          "run": 3,
+          "observations": [
+            {
+              "tag": "ownership_dilution",
+              "evidence_refs": [
+                "a_built",
+                "a_team_built",
+                "b_enum",
+                "a_agreed"
+              ],
+              "confidence": 0.7,
+              "basis": "The answer mixes individually-owned actions (a_built) with team-owned actions (a_team_built, a_agreed) and an enumeration relationship links the speaker's and team's actions without distinguishing individual contribution."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"ownership_dilution\", \"evidence_refs\": [\"a_built\", \"a_team_built\", \"b_enum\", \"a_agreed\"], \"confidence\": 0.7, \"basis\": \"The answer mixes individually-owned actions (a_built) with team-owned actions (a_team_built, a_agreed) and an enumeration relationship links the speaker's and team's actions without distinguishing individual contribution.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5594,
+            "response_bytes": 2124
+          }
+        }
+      ]
+    },
+    {
+      "kind": "primary",
+      "case_id": "009",
+      "label": "Genuine quotes, invalid reasoning (return policy)",
+      "domain": "customer_support",
+      "spec": {
+        "case_id": "009",
+        "target": "unresolved_alternative_cause",
+        "authority": "Evidence Atlas",
+        "expected_observation": "The speaker states a causal belief while another plausible same-period explanation remains unaddressed."
+      },
+      "existing_mechanisms": {
+        "deterministic_candidates": [
+          "O3_unquantified_result",
+          "O4_ownership_hiding",
+          "O5_vagueness"
+        ],
+        "deterministic_selected_opportunity": "O5_vagueness",
+        "deterministic_habit": "H4",
+        "structured_teaching_move": "request_number",
+        "structured_readiness_has_meaningful_result": false
+      },
+      "sod_input": {
+        "nodes": [
+          {
+            "id": "a_policy",
+            "claim_type": "context_fact",
+            "quote": "We changed our return policy to be more lenient at the start of the quarter",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_reps",
+            "claim_type": "context_fact",
+            "quote": "we also added two more support reps that same month",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_outcome",
+            "claim_type": "outcome",
+            "quote": "Customer complaints about our support process dropped by the end of the quarter",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_belief",
+            "claim_type": "self_reported_diagnosis",
+            "quote": "I think the complaints dropped because agents were less stressed after we also added two more support reps that same month",
+            "speaker_assertion": true
+          }
+        ],
+        "edges": [
+          {
+            "id": "b_because",
+            "relationship_type": "explicit_connective",
+            "component_ids": [
+              "a_belief"
+            ],
+            "marker_text": "because"
+          }
+        ]
+      },
+      "runs": [
+        {
+          "run": 1,
+          "observations": [
+            {
+              "tag": "unresolved_alternative_cause",
+              "evidence_refs": [
+                "a_belief",
+                "b_because",
+                "a_policy",
+                "a_outcome"
+              ],
+              "confidence": 0.8,
+              "basis": "The speaker attributes the complaint drop (a_outcome) to reduced agent stress from added reps (a_belief, marked by 'because'), while the concurrent return policy change (a_policy) is an equally plausible cause left unaddressed."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"unresolved_alternative_cause\", \"evidence_refs\": [\"a_belief\", \"b_because\", \"a_policy\", \"a_outcome\"], \"confidence\": 0.8, \"basis\": \"The speaker attributes the complaint drop (a_outcome) to reduced agent stress from added reps (a_belief, marked by 'because'), while the concurrent return policy change (a_policy) is an equally plausible cause left unaddressed.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5737,
+            "response_bytes": 2685
+          }
+        },
+        {
+          "run": 2,
+          "observations": [
+            {
+              "tag": "unresolved_alternative_cause",
+              "evidence_refs": [
+                "a_belief",
+                "b_because",
+                "a_policy",
+                "a_outcome"
+              ],
+              "confidence": 0.75,
+              "basis": "The speaker explicitly attributes the complaint drop to reduced agent stress from added reps (a_belief, marked by 'because'), while the concurrent return policy change (a_policy) is a plausible alternative cause for the same outcome (a_outcome) that is never addressed."
+            },
+            {
+              "tag": "ownership_dilution",
+              "evidence_refs": [
+                "a_policy",
+                "a_reps",
+                "a_belief"
+              ],
+              "confidence": 0.55,
+              "basis": "All actions described (policy change, adding reps) are attributed to 'we' with no claim identifying what the speaker personally did, making individual contribution indistinguishable from the team's."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"unresolved_alternative_cause\", \"evidence_refs\": [\"a_belief\", \"b_because\", \"a_policy\", \"a_outcome\"], \"confidence\": 0.75, \"basis\": \"The speaker explicitly attributes the complaint drop to reduced agent stress from added reps (a_belief, marked by 'because'), while the concurrent return policy change (a_policy) is a plausible alternative cause for the same outcome (a_outcome) that is never addressed.\"}, {\"tag\": \"ownership_dilution\", \"evidence_refs\": [\"a_policy\", \"a_reps\", \"a_belief\"], \"confidence\": 0.55, \"basis\": \"All actions described (policy change, adding reps) are attributed to 'we' with no claim identifying what the speaker personally did, making individual contribution indistinguishable from the team's.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5737,
+            "response_bytes": 5374
+          }
+        },
+        {
+          "run": 3,
+          "observations": [
+            {
+              "tag": "unresolved_alternative_cause",
+              "evidence_refs": [
+                "a_belief",
+                "b_because",
+                "a_policy",
+                "a_outcome"
+              ],
+              "confidence": 0.75,
+              "basis": "The speaker attributes the drop in complaints to reduced agent stress from added reps (a_belief, marked by explicit connective b_because), while the concurrent policy change (a_policy) is a plausible alternative cause of the same outcome (a_outcome) that is never addressed."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"unresolved_alternative_cause\", \"evidence_refs\": [\"a_belief\", \"b_because\", \"a_policy\", \"a_outcome\"], \"confidence\": 0.75, \"basis\": \"The speaker attributes the drop in complaints to reduced agent stress from added reps (a_belief, marked by explicit connective b_because), while the concurrent policy change (a_policy) is a plausible alternative cause of the same outcome (a_outcome) that is never addressed.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5737,
+            "response_bytes": 4265
+          }
+        }
+      ]
+    },
+    {
+      "kind": "control",
+      "case_id": "sales",
+      "label": "Account about to churn → renewed +15%",
+      "domain": "sales",
+      "spec": {
+        "case_id": "sales",
+        "expect_absent": [
+          "ownership_dilution",
+          "result_needs_substance",
+          "assumption_reversal",
+          "unresolved_alternative_cause"
+        ],
+        "not_scored": [],
+        "why_chosen": "Satisfies three of the required control shapes at once. CLEAR RESULT: 'They renewed for another two years at a 15 percent higher total contract value'. CLEAR INDIVIDUAL OWNERSHIP: every action claim is first-person singular ('I put together...', 'I walked the client through...'). NO UNRESOLVED CAUSAL ATTRIBUTION: the speaker asserts no cause at all, and only one explanation is offered. No prior_belief claim exists, so assumption_reversal is unsupported too. All four tags must be absent."
+      },
+      "existing_mechanisms": {
+        "deterministic_candidates": [
+          "O3_missing_result"
+        ],
+        "deterministic_selected_opportunity": "O3_missing_result",
+        "deterministic_habit": "H2",
+        "structured_teaching_move": "request_constraint",
+        "structured_readiness_has_meaningful_result": false
+      },
+      "sod_input": {
+        "nodes": [
+          {
+            "id": "a_problem",
+            "claim_type": "problem",
+            "quote": "One of our long-time accounts was about to churn because a competitor undercut our pricing",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_proposal",
+            "claim_type": "action",
+            "quote": "I put together a custom retention proposal that bundled two of our add-on services at a discount instead of just cutting the base price",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_walked",
+            "claim_type": "action",
+            "quote": "I walked the client through the long-term cost savings compared to switching providers",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_outcome",
+            "claim_type": "outcome",
+            "quote": "They renewed for another two years at a 15 percent higher total contract value than before",
+            "speaker_assertion": false
+          }
+        ],
+        "edges": [
+          {
+            "id": "b_quantity",
+            "relationship_type": "quantity_binding",
+            "component_ids": [
+              "a_outcome"
+            ],
+            "marker_text": ""
+          }
+        ]
+      },
+      "runs": [
+        {
+          "run": 1,
+          "observations": [],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": []}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5781,
+            "response_bytes": 1754
+          }
+        },
+        {
+          "run": 2,
+          "observations": [],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": []}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5781,
+            "response_bytes": 1742
+          }
+        },
+        {
+          "run": 3,
+          "observations": [],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": []}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5781,
+            "response_bytes": 1686
+          }
+        }
+      ]
+    },
+    {
+      "kind": "control",
+      "case_id": "nursing",
+      "label": "Patient confusion + elevated HR → sepsis",
+      "domain": "healthcare",
+      "spec": {
+        "case_id": "nursing",
+        "expect_absent": [
+          "ownership_dilution",
+          "result_needs_substance",
+          "assumption_reversal",
+          "unresolved_alternative_cause"
+        ],
+        "not_scored": [],
+        "why_chosen": "The required STRONG ANSWER, and the sharpest discriminating control in the set. It contains one incidental plural ('we caught early signs of sepsis') inside an answer whose decisive action is unambiguously the speaker's ('I flagged it to the attending right away'), which tests whether ownership_dilution fires on any 'we' or only on genuine dilution. It also contains a mismatch against a record ('signs ... that didn't match her chart') without a stated prior belief, testing whether assumption_reversal fires on mere surprise. Two substantive outcomes, and no causal claim by the speaker."
+      },
+      "existing_mechanisms": {
+        "deterministic_candidates": [
+          "O3_missing_result",
+          "O5_vagueness"
+        ],
+        "deterministic_selected_opportunity": "O5_vagueness",
+        "deterministic_habit": "H4",
+        "structured_teaching_move": "highlight_strength",
+        "structured_readiness_has_meaningful_result": true
+      },
+      "sod_input": {
+        "nodes": [
+          {
+            "id": "a_problem",
+            "claim_type": "problem",
+            "quote": "A patient on my unit started showing signs of confusion and elevated heart rate that didn't match her chart",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_context",
+            "claim_type": "context_fact",
+            "quote": "The night before her vitals had been stable",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_action",
+            "claim_type": "action",
+            "quote": "I flagged it to the attending right away instead of waiting for the scheduled check",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_diagnosis",
+            "claim_type": "self_reported_diagnosis",
+            "quote": "we caught early signs of sepsis before it progressed further",
+            "speaker_assertion": true
+          },
+          {
+            "id": "a_outcome1",
+            "claim_type": "outcome",
+            "quote": "She was moved to a higher level of care",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_outcome2",
+            "claim_type": "outcome",
+            "quote": "pulled through without any lasting complications",
+            "speaker_assertion": false
+          }
+        ],
+        "edges": [
+          {
+            "id": "b_temporal",
+            "relationship_type": "temporal_sequence",
+            "component_ids": [
+              "a_action",
+              "a_diagnosis"
+            ],
+            "marker_text": ""
+          },
+          {
+            "id": "b_enum_outcomes",
+            "relationship_type": "enumeration",
+            "component_ids": [
+              "a_outcome1",
+              "a_outcome2"
+            ],
+            "marker_text": ""
+          }
+        ]
+      },
+      "runs": [
+        {
+          "run": 1,
+          "observations": [],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": []}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 6027,
+            "response_bytes": 3054
+          }
+        },
+        {
+          "run": 2,
+          "observations": [],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": []}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 6027,
+            "response_bytes": 3642
+          }
+        },
+        {
+          "run": 3,
+          "observations": [],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": []}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 6027,
+            "response_bytes": 3810
+          }
+        }
+      ]
+    },
+    {
+      "kind": "control",
+      "case_id": "thin",
+      "label": "Deliberately evidence-poor answer",
+      "domain": "manufacturing",
+      "spec": {
+        "case_id": "thin",
+        "expect_absent": [
+          "ownership_dilution",
+          "assumption_reversal",
+          "unresolved_alternative_cause"
+        ],
+        "not_scored": [
+          {
+            "tag": "result_needs_substance",
+            "why": "This is the corpus's deliberately evidence-poor answer; 'eventually got it sorted out' and 'Things went back to normal' ARE the canonical thin result. Detection here would be a true positive, not a false one, so scoring it either way would be dishonest. It is excluded from this control's tally for that one tag only."
+          }
+        ],
+        "why_chosen": "The required THIN/WEAK ANSWER whose problem is unrelated to three of the four tags: no prior belief, no causal claim, and no individual-versus-team ambiguity to resolve."
+      },
+      "existing_mechanisms": {
+        "deterministic_candidates": [
+          "O3_missing_result",
+          "O5_vagueness"
+        ],
+        "deterministic_selected_opportunity": "O3_missing_result",
+        "deterministic_habit": "H2",
+        "structured_teaching_move": "request_number",
+        "structured_readiness_has_meaningful_result": true
+      },
+      "sod_input": {
+        "nodes": [
+          {
+            "id": "a_problem",
+            "claim_type": "problem",
+            "quote": "We had an issue with parts on the line",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_outcome",
+            "claim_type": "outcome",
+            "quote": "eventually got it sorted out",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_outcome2",
+            "claim_type": "outcome",
+            "quote": "Things went back to normal after that",
+            "speaker_assertion": false
+          }
+        ],
+        "edges": []
+      },
+      "runs": [
+        {
+          "run": 1,
+          "observations": [
+            {
+              "tag": "result_needs_substance",
+              "evidence_refs": [
+                "a_outcome",
+                "a_outcome2"
+              ],
+              "confidence": 0.75,
+              "basis": "The outcomes 'eventually got it sorted out' and 'Things went back to normal' are result-shaped but contain no concrete detail about what changed or was achieved."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"result_needs_substance\", \"evidence_refs\": [\"a_outcome\", \"a_outcome2\"], \"confidence\": 0.75, \"basis\": \"The outcomes 'eventually got it sorted out' and 'Things went back to normal' are result-shaped but contain no concrete detail about what changed or was achieved.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5346,
+            "response_bytes": 2355
+          }
+        },
+        {
+          "run": 2,
+          "observations": [
+            {
+              "tag": "result_needs_substance",
+              "evidence_refs": [
+                "a_outcome",
+                "a_outcome2"
+              ],
+              "confidence": 0.75,
+              "basis": "The claims 'eventually got it sorted out' and 'Things went back to normal' are result-shaped language but describe no concrete or measurable effect."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"result_needs_substance\", \"evidence_refs\": [\"a_outcome\", \"a_outcome2\"], \"confidence\": 0.75, \"basis\": \"The claims 'eventually got it sorted out' and 'Things went back to normal' are result-shaped language but describe no concrete or measurable effect.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5346,
+            "response_bytes": 1734
+          }
+        },
+        {
+          "run": 3,
+          "observations": [
+            {
+              "tag": "result_needs_substance",
+              "evidence_refs": [
+                "a_outcome",
+                "a_outcome2"
+              ],
+              "confidence": 0.8,
+              "basis": "The outcomes 'eventually got it sorted out' and 'things went back to normal' are result-shaped but lack any concrete detail showing meaningful effect."
+            }
+          ],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": [{\"tag\": \"result_needs_substance\", \"evidence_refs\": [\"a_outcome\", \"a_outcome2\"], \"confidence\": 0.8, \"basis\": \"The outcomes 'eventually got it sorted out' and 'things went back to normal' are result-shaped but lack any concrete detail showing meaningful effect.\"}]}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5346,
+            "response_bytes": 1735
+          }
+        }
+      ]
+    },
+    {
+      "kind": "control",
+      "case_id": "010",
+      "label": "Missing context inference (onboarding)",
+      "domain": "product",
+      "spec": {
+        "case_id": "010",
+        "expect_absent": [
+          "ownership_dilution",
+          "assumption_reversal",
+          "unresolved_alternative_cause"
+        ],
+        "not_scored": [
+          {
+            "tag": "result_needs_substance",
+            "why": "Genuinely ambiguous: 'Completion rates went back up within two weeks' is concrete and consequential, but carries no magnitude. The founder has not ruled on it. Pre-registered as unscored rather than resolved by Claude after seeing the result."
+          }
+        ],
+        "why_chosen": "The precision control for unresolved_alternative_cause, and the tightest available contrast with Case 009. Both answers imply a causal story, but here the speaker asserts only SEQUENCE ('I shortened the flow... Completion rates went back up'), and the causal reading exists solely as a Class C non-admissible hypothesis generated by the system, which SOD is never shown. Case 009's speaker, by contrast, asserts the cause outright. If SOD fires here it is inventing a relationship the speaker did not state — precisely the failure mode the Atlas warns about. Ownership is also unambiguous first-person singular."
+      },
+      "existing_mechanisms": {
+        "deterministic_candidates": [
+          "O3_unquantified_result",
+          "O5_vagueness"
+        ],
+        "deterministic_selected_opportunity": "O5_vagueness",
+        "deterministic_habit": "H4",
+        "structured_teaching_move": "request_constraint",
+        "structured_readiness_has_meaningful_result": false
+      },
+      "sod_input": {
+        "nodes": [
+          {
+            "id": "a_problem",
+            "claim_type": "problem",
+            "quote": "our onboarding completion rate had dropped",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_action",
+            "claim_type": "action",
+            "quote": "I shortened the onboarding flow from nine steps to five",
+            "speaker_assertion": false
+          },
+          {
+            "id": "a_outcome",
+            "claim_type": "outcome",
+            "quote": "Completion rates went back up within two weeks",
+            "speaker_assertion": false
+          }
+        ],
+        "edges": [
+          {
+            "id": "b_temporal",
+            "relationship_type": "temporal_sequence",
+            "component_ids": [
+              "a_action",
+              "a_outcome"
+            ],
+            "marker_text": ""
+          },
+          {
+            "id": "b_quantity",
+            "relationship_type": "quantity_binding",
+            "component_ids": [
+              "a_action"
+            ],
+            "marker_text": ""
+          }
+        ]
+      },
+      "runs": [
+        {
+          "run": 1,
+          "observations": [],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": []}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5549,
+            "response_bytes": 2094
+          }
+        },
+        {
+          "run": 2,
+          "observations": [],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": []}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5549,
+            "response_bytes": 2058
+          }
+        },
+        {
+          "run": 3,
+          "observations": [],
+          "rejected": [],
+          "parse_failed": false,
+          "no_text_block": false,
+          "raw_response": "{\"observations\": []}",
+          "meta": {
+            "provider": "anthropic",
+            "model": "claude-sonnet-5",
+            "base_url": "https://api.anthropic.com",
+            "request_bytes": 5549,
+            "response_bytes": 2386
+          }
+        }
+      ]
+    }
+  ]
+}
