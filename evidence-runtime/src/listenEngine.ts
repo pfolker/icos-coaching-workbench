@@ -26,6 +26,20 @@ export interface LiveCallMeta {
   base_url: string;
   request_bytes: number;
   response_bytes: number;
+  /**
+   * Why the model stopped. `"max_tokens"` means the response was CUT OFF, which
+   * is not the same thing as the model having nothing to say — see
+   * ListenTruncatedError. Null when the provider did not report one.
+   */
+  stop_reason: string | null;
+  output_tokens: number | null;
+  /**
+   * Of `output_tokens`, how many went to the model's thinking pass. This is the
+   * volatile term: the Class B investigation measured complete thinking passes
+   * of 2,971 and 3,528 tokens against a 4,096 budget, which is what starved the
+   * text block and truncated the JSON.
+   */
+  thinking_tokens: number | null;
 }
 
 export type ListenEngineResult =
@@ -43,6 +57,39 @@ export class NoApiKeyError extends Error {
   }
 }
 
+/**
+ * The response was CUT OFF before the model finished writing it — the output
+ * budget ran out, or no text block was produced at all.
+ *
+ * This exists because the failure was previously indistinguishable from the
+ * model emitting malformed JSON: truncation surfaced as a generic
+ * `SyntaxError: Unterminated string in JSON`, and a caller counting parse
+ * failures could not tell "the pipeline was cut off" from "the model answered
+ * badly" from "there was nothing to find". Those are three different failures
+ * with three different owners, and the Class B Live-Admission Investigation
+ * found the first one being silently read as the third across 35% of its runs.
+ *
+ * Carries the diagnostic metadata so a caller never has to infer the cause.
+ * Same intent as sod-experiment's `no_text_block` flag.
+ */
+export class ListenTruncatedError extends Error {
+  readonly truncated = true;
+  constructor(
+    readonly meta: LiveCallMeta,
+    readonly reason: "max_tokens" | "no_text_block",
+  ) {
+    super(
+      reason === "max_tokens"
+        ? `Live Listen Engine response was truncated: the model stopped at stop_reason="max_tokens" ` +
+          `after ${meta.output_tokens ?? "?"} output tokens (${meta.thinking_tokens ?? "?"} of them thinking). ` +
+          `The response is incomplete — it must NOT be read as "no evidence found".`
+        : `Live Listen Engine returned no text block (stop_reason=${JSON.stringify(meta.stop_reason)}). ` +
+          `The response is empty — it must NOT be read as "no evidence found".`,
+    );
+    this.name = "ListenTruncatedError";
+  }
+}
+
 export function hasLiveApiKey(): boolean {
   return typeof process.env.ANTHROPIC_API_KEY === "string" && process.env.ANTHROPIC_API_KEY.length > 0;
 }
@@ -55,10 +102,39 @@ export function runListenEngineFixture(raw: ListenEngineRawOutput): ListenEngine
 const DEFAULT_MODEL = "claude-sonnet-5";
 
 /**
+ * Output budget — PRE-REGISTERED at 8192 before any run, per the Listen
+ * Truncation Fix work order, and derived from measured evidence rather than
+ * chosen by trying values:
+ *
+ *   - thinking, measured complete: 2,971 and 3,528 tokens (both diagnoses show
+ *     the thinking pass FINISHING and the text block being cut, so these are
+ *     complete passes, not truncated ones). Worst observed: 3,528.
+ *   - a full proposal document for the largest anchors (~15-16 Class A, ~5-6
+ *     Class B, plus Class C) is ~1,200-1,500 tokens. Case 002 was cut at ~750
+ *     tokens of text with roughly two-thirds of Class A emitted.
+ *   - worst-case requirement therefore ~3,528 + ~1,500 = ~5,030.
+ *   - 8192 leaves ~4,600 tokens for thinking AFTER a full-size document is paid
+ *     for — a ~1.3x margin over the worst observed thinking pass — and is the
+ *     smallest power-of-two doubling of the old 4096 that clears it.
+ *
+ * "Raise until it passes" is explicitly not authorized. If a run still
+ * truncates at 8192 that is a REPORTABLE FAILURE, not a trigger to raise again:
+ * a second truncation at double the budget would mean the problem is not budget
+ * sizing.
+ */
+const MAX_TOKENS = 8192;
+
+/**
  * Live mode: exactly one LLM call. Throws NoApiKeyError (never fabricates a
  * fallback) when ANTHROPIC_API_KEY isn't set. Uses fetch directly against
  * the Anthropic Messages API rather than pulling in an SDK dependency, so
  * exactly what is sent and received is visible in this one file.
+ *
+ * Throws ListenTruncatedError when the response was cut off or carried no text
+ * block. That check runs BEFORE parsing, because after parsing the two are
+ * indistinguishable: a truncated document fails as a generic JSON syntax error
+ * that looks exactly like a model writing malformed JSON. No retry — a
+ * truncated call fails visibly rather than being silently re-attempted.
  */
 export async function runListenEngineLive(transcript: string): Promise<ListenEngineResult> {
   if (!hasLiveApiKey()) throw new NoApiKeyError();
@@ -69,7 +145,7 @@ export async function runListenEngineLive(transcript: string): Promise<ListenEng
   const userMessage = `TRANSCRIPT:\n"""\n${transcript}\n"""`;
   const requestBody = {
     model,
-    max_tokens: 4096,
+    max_tokens: MAX_TOKENS,
     system: LISTEN_ENGINE_SYSTEM_PROMPT,
     messages: [{ role: "user", content: userMessage }],
   };
@@ -89,20 +165,48 @@ export async function runListenEngineLive(transcript: string): Promise<ListenEng
     throw new Error(`Live Listen Engine call failed: HTTP ${res.status} — ${bodyText.slice(0, 500)}`);
   }
 
-  const parsed = JSON.parse(bodyText) as { content?: { type: string; text?: string }[] };
+  const parsed = JSON.parse(bodyText) as {
+    content?: { type: string; text?: string }[];
+    stop_reason?: string;
+    usage?: { output_tokens?: number; output_tokens_details?: { thinking_tokens?: number } };
+  };
   const textBlock = parsed.content?.find((b) => b.type === "text")?.text ?? "";
+
+  const meta: LiveCallMeta = {
+    model,
+    base_url: baseUrl,
+    request_bytes: JSON.stringify(requestBody).length,
+    response_bytes: bodyText.length,
+    stop_reason: parsed.stop_reason ?? null,
+    output_tokens: parsed.usage?.output_tokens ?? null,
+    thinking_tokens: parsed.usage?.output_tokens_details?.thinking_tokens ?? null,
+  };
+
+  // Truncation is detected BEFORE parsing, on purpose. Once parseModelJson has
+  // run, a cut-off document and a malformed one are the same SyntaxError.
+  //
+  // The raw response is still persisted on this path. That capture is what made
+  // the truncated runs forensically recoverable in the Class B investigation —
+  // Case 002's contrast_marker proposals were read straight out of the log — so
+  // detecting truncation earlier must not cost us the artifact.
+  const truncation =
+    meta.stop_reason === "max_tokens" ? "max_tokens" as const
+    : textBlock.trim().length === 0 ? "no_text_block" as const
+    : null;
+  if (truncation) {
+    const err = new ListenTruncatedError(meta, truncation);
+    logParseFailure({
+      transcript,
+      systemPrompt: LISTEN_ENGINE_SYSTEM_PROMPT,
+      rawResponseText: textBlock,
+      parseError: err,
+    });
+    throw err;
+  }
+
   const raw = parseModelJson(textBlock, { transcript, systemPrompt: LISTEN_ENGINE_SYSTEM_PROMPT });
 
-  return {
-    mode: "live",
-    raw,
-    meta: {
-      model,
-      base_url: baseUrl,
-      request_bytes: JSON.stringify(requestBody).length,
-      response_bytes: bodyText.length,
-    },
-  };
+  return { mode: "live", raw, meta };
 }
 
 /**
